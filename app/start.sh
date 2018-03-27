@@ -14,5 +14,3 @@ else
     printf 'Not connected. Starting WiFi Connect\n'
     ./wifi-connect --portal-ssid "Hound" --ui-directory "wifi"
 fi
-
-./wifi-connect --portal-ssid "Hound" --ui-directory "wifi"
