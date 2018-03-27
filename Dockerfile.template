@@ -2,8 +2,7 @@ FROM resin/rpi-raspbian
 
 ENV INITSYSTEM on
 
-RUN curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash - \
-    && apt-get update \
+RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     dnsmasq \
     wireless-tools \
@@ -62,7 +61,6 @@ RUN systemctl enable raspotify
 COPY ./app .
 
 # Install npm modules for the application
-RUN JOBS=MAX npm install --unsafe-perm \
-    && npm cache verify && rm -rf /tmp/*
+RUN npm install --unsafe-perm
 
 CMD ["bash", "start.sh"]
