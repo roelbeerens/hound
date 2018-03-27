@@ -4,7 +4,7 @@ ENV INITSYSTEM on
 
 RUN curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash - \
     && apt-get update \
-    && apt-get install -y dnsmasq wireless-tools nodejs alsa-utils git-all autoconf make automake libtool libdaemon-dev libpopt-dev libconfig-dev libasound2-dev avahi-daemon libavahi-client-dev libssl-dev \
+    && apt-get install -y dnsmasq wireless-tools nodejs alsa-utils build-essential git xmltoman autoconf make automake libtool libdaemon-dev libpopt-dev libconfig-dev libasound2-dev avahi-daemon libavahi-client-dev libssl-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
