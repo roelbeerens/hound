@@ -1,5 +1,7 @@
 FROM resin/rpi-raspbian
 
+ENV INITSYSTEM on
+
 RUN curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash - \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -66,9 +68,6 @@ RUN systemctl disable shairport-sync
 
 # Enable services
 RUN systemctl enable raspotify
-
-# Uncomment for systemd
-ENV INITSYSTEM on
 
 # Start app
 COPY app/start.sh .
