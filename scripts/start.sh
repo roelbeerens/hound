@@ -22,7 +22,3 @@ else
     printf 'Starting WiFi Connect\n'
     ./wifi-connect
 fi
-
-# Start your application here.
-printf 'Starting Shairport\n'
-./shairport-sync
