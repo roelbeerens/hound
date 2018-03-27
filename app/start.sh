@@ -11,3 +11,5 @@ else
     printf 'Starting WiFi Connect\n'
     ./wifi-connect
 fi
+
+node /usr/src/app/index.js
