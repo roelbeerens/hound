@@ -12,4 +12,4 @@ else
     ./wifi-connect
 fi
 
-node /usr/src/app/index.js
+node index.js

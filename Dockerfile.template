@@ -29,17 +29,6 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash - \
 
 WORKDIR /usr/src/app
 
-# Move package.json to filesystem
-COPY ./app/package.json ./
-COPY ./app/package-lock.json ./
-
-# Install npm modules for the application
-RUN JOBS=MAX npm install --unsafe-perm \
-    && npm cache clean --force && rm -rf /tmp/*
-
-# Move app to filesystem
-COPY ./app ./
-
 RUN curl https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest -s \
     | grep -hoP 'browser_download_url": "\K.*%%RESIN_ARCH%%\.tar\.gz' \
     | xargs -n1 curl -Ls \
@@ -58,7 +47,7 @@ RUN curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
 COPY ./Dockerbin/shairport-sync.conf /etc/shairport-sync.conf
 
 # Configure DAC
-# COPY ./Dockerbin/asound.conf /etc/asound.conf
+COPY ./Dockerbin/asound.conf /etc/asound.conf
 
 # Deploy Raspotify config
 COPY ./Dockerbin/raspotify.conf /etc/default/raspotify
@@ -69,7 +58,11 @@ RUN systemctl disable shairport-sync
 # Enable services
 RUN systemctl enable raspotify
 
-# Start app
-COPY app/start.sh .
+# Move app to filesystem
+COPY ./app .
+
+# Install npm modules for the application
+RUN JOBS=MAX npm install --unsafe-perm \
+    && npm cache verify && rm -rf /tmp/*
 
 CMD ["bash", "start.sh"]
