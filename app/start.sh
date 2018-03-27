@@ -6,7 +6,7 @@ printf 'Shairport Sync started\n'
 printf 'Raspotify started\n'
 
 # Is there an active WiFi connection?
-#iwgetid -r
+iwgetid -r
 
 if [ $? -eq 0 ]; then
     printf 'Skipping WiFi Connect\n'
