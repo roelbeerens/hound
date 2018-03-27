@@ -24,3 +24,5 @@ else
 fi
 
 # Start your application here.
+printf 'Starting Shairport\n'
+./shairport-sync
