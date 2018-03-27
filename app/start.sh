@@ -11,5 +11,3 @@ else
     printf 'Starting WiFi Connect\n'
     ./wifi-connect
 fi
-
-node index.js

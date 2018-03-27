@@ -66,4 +66,8 @@ COPY ./app .
 # Install npm modules for the application
 RUN npm install --unsafe-perm
 
+# Start bash script
 CMD ["bash", "start.sh"]
+
+# Start node application
+CMD ["npm", "start"]
