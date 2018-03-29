@@ -70,4 +70,4 @@ RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean --force &
 # This will copy all files in app to the working directory in the container
 COPY ./app .
 
-CMD ["bash", "start.sh"]
+CMD ["bash", "run.sh"]
