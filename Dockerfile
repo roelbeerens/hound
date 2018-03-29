@@ -31,7 +31,7 @@ RUN apt-get update \
 
 WORKDIR /usr/src/app
 
-RUN curl "https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest" -s \
+RUN curl -sL https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest -s \
     | grep -hoP 'browser_download_url": "\K.*%%RESIN_ARCH%%\.tar\.gz' \
     | xargs -n1 curl -Ls \
     | tar -xvz -C /usr/src/app/
@@ -39,13 +39,13 @@ RUN curl "https://api.github.com/repos/resin-io/resin-wifi-connect/releases/late
 RUN rm -rf /usr/src/app/ui
 
 # Install shairport
-RUN git clone "https://github.com/mikebrady/shairport-sync.git" shairport-sync --depth 1 \
+RUN git clone https://github.com/mikebrady/shairport-sync.git shairport-sync --depth 1 \
     && cd shairport-sync && autoreconf -i -f \
     && ./configure --with-alsa --with-avahi --with-ssl=openssl --with-metadata --with-systemd --sysconfdir=/etc \
     && make install && cd ../ && rm -rf shairport-sync
 
 # Install Raspotify
-RUN curl -sL "https://dtcooper.github.io/raspotify/install.sh" | sh
+RUN curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
 
 # Configure Shairport Sync
 COPY ./config/shairport-sync.conf /etc/shairport-sync.conf
