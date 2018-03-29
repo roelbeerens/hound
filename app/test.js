@@ -1,3 +1,4 @@
+const chalk = require("chalk");
 const exec = require('child_process').exec;
 
 exec('nmcli -t g | grep full', (error) => {
