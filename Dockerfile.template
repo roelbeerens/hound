@@ -24,6 +24,8 @@ RUN apt-get update \
     libpopt-dev \
     libconfig-dev \
     libasound2-dev \
+    libpam-systemd \
+    policykit-1 \
     avahi-daemon \
     libavahi-client-dev \
     libssl-dev \
