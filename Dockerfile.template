@@ -7,7 +7,6 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     dnsmasq \
     wireless-tools \
-    network-manager \
     alsa-base \
     alsa-utils \
     build-essential \
@@ -58,9 +57,6 @@ COPY ./config/raspotify.conf /etc/default/raspotify
 
 # Enable services - we will manually start it later
 RUN systemctl disable shairport-sync raspotify
-
-# Mask NetworkManager
-RUN systemctl mask NetworkManager.service
 
 # Copies the package.json first for better cache on later pushes
 COPY ./app/package.json ./package.json
