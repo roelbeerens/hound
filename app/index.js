@@ -1,54 +1,13 @@
 const path = require('path');
-const express = require('express');
-const app = express();
-const chalk = require("chalk");
-const spawn = require('child_process').spawn;
-const exec = require('child_process').exec;
-// const shairport = require(path.join(__dirname + '/modules/shairport-sync'));
-// const raspotify = require(path.join(__dirname + '/modules/raspotify'));
+const shairport = require(path.join(__dirname + '/modules/shairport-sync'));
+const raspotify = require(path.join(__dirname + '/modules/raspotify'));
+const ui = require(path.join(__dirname + '/modules/ui'));
 
 //Shairport
-// shairport.run();
-console.log('Let\'s go!');
-
-console.log(chalk.cyan('Starting Shairport'));
-
-const shairport = spawn('shairport-sync');
-
-shairport.stdout.on('data', (data) => {
-    'use strict';
-    console.log(chalk.cyan(`Shairport: ${data}`));
-});
-
-shairport.stderr.on('data', (data) => {
-    'use strict';
-    console.log(chalk.red(`Shairport: ${data}`));
-});
-
-shairport.on('close', (code) => {
-    'use strict';
-    console.log(chalk.yellow(`Shairport process exited with code ${code}`));
-});
+shairport.run();
 
 //Raspotify
-// raspotify.run();
-console.log(chalk.cyan('Starting Raspotify'));
+raspotify.run();
 
-exec('systemctl start raspotify', (error) => {
-    'use strict';
-    if (error) {
-        console.log(chalk.red(`exec error: ${error}`));
-        return;
-    }
-});
-
-//Server
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '/ui/index.html'));
-});
-
-//start a server on port 80 and log its start to our console
-let server = app.listen(80, function () {
-    let port = server.address().port;
-    console.log(chalk.cyan('Example app listening on port ', port));
-});
+//Ui
+ui.run();

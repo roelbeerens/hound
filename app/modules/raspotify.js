@@ -1,25 +1,14 @@
-const spawn = require('child_process').spawn;
+const exec = require('child_process').exec;
 const chalk = require("chalk");
 
 module.exports = {
     run: function() {
         console.log(chalk.cyan('Starting Raspotify'));
-
-        const raspotify = spawn('raspotify');
-
-        raspotify.stdout.on('data', (data) => {
-            'use strict';
-            console.log(chalk.cyan(`Raspotify: ${data}`));
-        });
-
-        raspotify.stderr.on('data', (data) => {
-            'use strict';
-            console.log(chalk.red(`Raspotify: ${data}`));
-        });
-
-        raspotify.on('close', (code) => {
-            'use strict';
-            console.log(chalk.yellow(`Raspotify process exited with code ${code}`));
+        exec('systemctl start raspotify', (error) => {
+            if (error) {
+                console.log(chalk.red(`exec error: ${error}`));
+                return;
+            }
         });
     }
 };
