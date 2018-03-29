@@ -15,4 +15,6 @@ else
     ./wifi-connect --portal-ssid "Hound" --ui-directory "lib/wificonnect/ui"
 fi
 
+sleep 1
+
 node index.js
