@@ -56,7 +56,7 @@ COPY ./config/asound.conf /etc/asound.conf
 COPY ./config/raspotify.conf /etc/default/raspotify
 
 # Enable services - we will manually start it later
-RUN systemctl enable shairport-sync raspotify
+RUN systemctl disable shairport-sync raspotify
 
 # Copies the package.json first for better cache on later pushes
 COPY ./app/package.json ./package.json
