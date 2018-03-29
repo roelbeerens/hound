@@ -12,5 +12,7 @@ if [ $? -eq 0 ]; then
     printf 'Already connected. Skipping WiFi Connect\n'
 else
     printf 'Not connected. Starting WiFi Connect\n'
-    ./wifi-connect --portal-ssid "Hound"
+    ./wifi-connect --portal-ssid "Hound" --ui-directory "lib/wificonnect/ui"
 fi
+
+node index.js
