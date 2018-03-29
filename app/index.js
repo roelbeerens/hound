@@ -1,8 +1,8 @@
 {
     const chalk = require("chalk");
-    const shairport = require('modules/shairport-sync');
-    const raspotify = require('modules/raspotify');
-    const supervisor = require('lib/supervisor/index');
+    const shairport = require(__dirname + '/modules/shairport-sync');
+    const raspotify = require(__dirname + '/modules/raspotify');
+    const supervisor = require(__dirname + '/lib/supervisor/index');
 
     //Shairport
     shairport.run();
