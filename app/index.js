@@ -1,27 +1,14 @@
 {
-    const spawn = require('child_process').spawn;
     const chalk = require("chalk");
-    const supervisor = require(__dirname + '/libs/supervisor/index.js');
+    const shairport = require('modules/shairport-sync');
+    const raspotify = require('modules/raspotify');
+    const supervisor = require('lib/supervisor/index');
 
-    // Shairport
-    console.log(chalk.cyan('Starting Shairport'));
+    //Shairport
+    shairport.run();
 
-    const shairport = spawn('shairport-sync');
-
-    shairport.stdout.on('data', (data) => {
-        'use strict';
-        console.log(`shairport: ${data}`);
-    });
-
-    shairport.stderr.on('data', (data) => {
-        'use strict';
-        console.log(`shairport: ${data}`);
-    });
-
-    shairport.on('close', (code) => {
-        'use strict';
-        console.log(`shairport process exited with code ${code}`);
-    });
+    //Raspotify
+    raspotify.run();
 
     // Supervisor
     supervisor.start(500, () => {
