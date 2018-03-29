@@ -1,35 +1,23 @@
-{
-    const chalk = require("chalk");
-    const shairport = require(__dirname + '/modules/shairport-sync');
-    const raspotify = require(__dirname + '/modules/raspotify');
-    const supervisor = require(__dirname + '/lib/supervisor/index');
+const express = require('express');
+const app = express();
+const chalk = require("chalk");
+const shairport = require(__dirname + '/modules/shairport-sync');
+const raspotify = require(__dirname + '/modules/raspotify');
 
-    //Shairport
-    shairport.run();
+//Shairport
+shairport.run();
 
-    //Raspotify
-    raspotify.run();
+//Raspotify
+raspotify.run();
 
-    // Supervisor
-    supervisor.start(500, () => {
-        'use strict';
-        supervisor.on('status', (status) => {
-            console.log(chalk.white('Supervisor status update: ' + status));
-            switch (status) {
-                case "Idle":
-                    break;
-                case "Installing":
-                    break;
-                case "Downloading":
-                    break;
-                case "Starting":
-                    break;
-                case "Stopping":
-                    setTimeout(() => {
-                        process.exit(1);
-                    }, 1000);
-                    break;
-            }
-        });
-    });
-}
+//Server
+// reply to request with "Hello World!"
+app.get('/', function (req, res) {
+    res.send('Hello World!');
+});
+
+//start a server on port 80 and log its start to our console
+let server = app.listen(80, function () {
+    let port = server.address().port;
+    console.log(chalk.cyan('Example app listening on port ', port));
+});
