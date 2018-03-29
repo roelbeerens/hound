@@ -2,9 +2,6 @@
 
 export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 
-printf 'Shairport Sync started\n'
-printf 'Raspotify started\n'
-
 # Is there an active WiFi connection?
 iwgetid -r
 
