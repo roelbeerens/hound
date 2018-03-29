@@ -1,0 +1,5 @@
+local_resinos:
+  app-name: local-app
+  build-triggers:
+    - Dockerfile: b0a119e0db37c65e24dfb8137683ea9e251813531a4292fb78016d259d3c228f
+  environment: []
