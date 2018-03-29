@@ -2,9 +2,12 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:slim
 
 ENV INITSYSTEM on
 
+RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/sources.list
+
 RUN apt-get update \
     && apt-get -y upgrade \
-    && apt-get install -y --no-install-recommends \
+    && apt-get -t stretch-backports install -y --no-install-recommends \
+    network-manager && \
     dnsmasq \
     wireless-tools \
     alsa-base \
@@ -57,6 +60,9 @@ COPY ./config/raspotify.conf /etc/default/raspotify
 
 # Enable services - we will manually start it later
 RUN systemctl enable shairport-sync raspotify
+
+# Enable NetworkManager
+RUN systemctl mask NetworkManager.service
 
 # Copies the package.json first for better cache on later pushes
 COPY ./app/package.json ./package.json
