@@ -14,4 +14,4 @@ fi
 
 sleep 1
 
-node index.js
+#node index.js
