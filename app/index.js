@@ -1,8 +1,9 @@
+const path = require('path');
 const express = require('express');
 const app = express();
 const chalk = require("chalk");
-const shairport = require(__dirname + '/modules/shairport-sync');
-const raspotify = require(__dirname + '/modules/raspotify');
+const shairport = require(path.join(__dirname + '/modules/shairport-sync'));
+const raspotify = require(path.join(__dirname + '/modules/raspotify'));
 
 //Shairport
 shairport.run();
@@ -11,9 +12,8 @@ shairport.run();
 raspotify.run();
 
 //Server
-// reply to request with "Hello World!"
 app.get('/', function (req, res) {
-    res.send('Hello World!');
+    res.sendFile(path.join(__dirname + '/ui/index.html'));
 });
 
 //start a server on port 80 and log its start to our console
