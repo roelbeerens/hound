@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const chalk = require("chalk");
 const spawn = require('child_process').spawn;
+const exec = require('child_process').exec;
 // const shairport = require(path.join(__dirname + '/modules/shairport-sync'));
 // const raspotify = require(path.join(__dirname + '/modules/raspotify'));
 
@@ -33,21 +34,12 @@ shairport.on('close', (code) => {
 // raspotify.run();
 console.log(chalk.cyan('Starting Raspotify'));
 
-const raspotify = spawn('raspotify');
-
-raspotify.stdout.on('data', (data) => {
+exec('systemctl start raspotify', (error) => {
     'use strict';
-    console.log(chalk.cyan(`Raspotify: ${data}`));
-});
-
-raspotify.stderr.on('data', (data) => {
-    'use strict';
-    console.log(chalk.red(`Raspotify: ${data}`));
-});
-
-raspotify.on('close', (code) => {
-    'use strict';
-    console.log(chalk.yellow(`Raspotify process exited with code ${code}`));
+    if (error) {
+        console.log(chalk.red(`exec error: ${error}`));
+        return;
+    }
 });
 
 //Server
