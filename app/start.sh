@@ -10,7 +10,5 @@ if [ ! "$SSID" ]; then
     ./wifi-connect --portal-ssid "Hound" --ui-directory "lib/wificonnect/ui"
 fi
 
-sleep 1
-
 # Start the application
 npm start
