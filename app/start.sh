@@ -3,9 +3,9 @@
 export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 
 # Is there an active WiFi connection?
-iwgetid -r
+SSID=`iwgetid -r`
 
-if [ $? -eq 0 ]; then
+if [ "$SSID" ]; then
     printf 'Already connected. Skipping WiFi Connect\n'
 else
     printf 'Not connected. Starting WiFi Connect\n'
