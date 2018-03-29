@@ -31,8 +31,8 @@ RUN apt-get update \
 
 WORKDIR /usr/src/app
 
-RUN curl -sL https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest -s \
-    | grep -hoP 'browser_download_url": "\K.*%%RESIN_ARCH%%\.tar\.gz' \
+RUN curl https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest -s \
+    | grep -hoP 'browser_download_url": "\K.*rpi\.tar\.gz' \
     | xargs -n1 curl -Ls \
     | tar -xvz -C /usr/src/app/
 
