@@ -1,4 +1,4 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-node:7
+FROM resin/%%RESIN_MACHINE_NAME%%-node:slim
 
 ENV INITSYSTEM on
 
