@@ -8,6 +8,7 @@ const spawn = require('child_process').spawn;
 
 //Shairport
 // shairport.run();
+console.log('Let\'s go!');
 
 console.log(chalk.cyan('Starting Shairport'));
 
