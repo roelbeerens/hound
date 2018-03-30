@@ -1,3 +1,4 @@
+const path = require('path');
 const player = require('play-sound')(opts = {
     player: 'aplay'
 });
