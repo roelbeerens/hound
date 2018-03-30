@@ -1,4 +1,4 @@
-var socket = require('socket.io-client')('http://226.0.0.1:5555');
+const socket = require('socket.io-client')('http://127.0.0.1:5555');
 const chalk = require("chalk");
 
 module.exports = {
