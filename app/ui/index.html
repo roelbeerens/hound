@@ -11,6 +11,7 @@
         .main {
             margin-top: 20px;
         }
+
         .container {
             max-width: 640px;
         }
@@ -25,10 +26,12 @@
 </nav>
 
 <div class="main container">
-    <form method="post">
-        <input type="hidden" name="shutdown" value="1" />
-        <button type="submit" class="btn btn-danger">Shutdown</button>
-    </form>
+    <div class="row">
+        <form method="post" class="col-12">
+            <button type="submit" class="btn btn-warning" name="reboot" value="1">Reboot</button>
+            <button type="submit" class="btn btn-danger"  name="shutdown" value="1">Shutdown</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>

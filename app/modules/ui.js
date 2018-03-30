@@ -14,8 +14,10 @@ module.exports = {
         app.route('/').get(function (req, res) {
             res.sendFile(path.join(__dirname + '/ui/index.html'));
         }).post(function (req, res) {
-            if(req.body.shutdown === '1') {
+            if (req.body.shutdown === '1') {
                 controls.shutdown();
+            } else if (req.body.reboot === '1') {
+                controls.reboot();
             }
 
             res.redirect('back');
