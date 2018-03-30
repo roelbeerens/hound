@@ -2,7 +2,7 @@ const path = require('path');
 const chalk = require("chalk");
 const express = require('express');
 const app = express();
-const controls = require(path.join(__dirname + '/controls'));
+const supervisor = require(path.join(__dirname + '/supervisor'));
 const feedback = require(path.join(__dirname + '/feedback'));
 
 app.use(express.static('ui'));
@@ -17,9 +17,9 @@ module.exports = {
             res.sendFile(path.join(__dirname + '/ui/index.html'));
         }).post(function (req, res) {
             if (req.body.shutdown === '1') {
-                controls.shutdown();
+                supervisor.shutdown();
             } else if (req.body.reboot === '1') {
-                controls.reboot();
+                supervisor.reboot();
             }
 
             res.redirect('back');
