@@ -2,8 +2,8 @@ const path = require('path');
 const chalk = require("chalk");
 const express = require('express');
 const app = express();
-const controls = require(path.join(__dirname + '/modules/controls'));
-const feedback = require(path.join(__dirname + '/modules/feedback'));
+const controls = require(path.join(__dirname + '/controls'));
+const feedback = require(path.join(__dirname + '/feedback'));
 
 module.exports = {
     run: function () {
