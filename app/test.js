@@ -1,14 +1,11 @@
-const socket = require('socket.io-client')('http://127.0.0.1:5555');
-const chalk = require("chalk");
+// import the module
+var ShairportReader = require('shairport-sync-reader');
+var pipeReader = new ShairportReader({ address: '127.0.0.1', port: '5555' });
 
-socket.on('connect', function(){
-    console.log(chalk.yellow('Connect'));
-});
-
-socket.on('event', function(data){
+pipeReader.on('pbeg', function(data){
     console.log(chalk.blue(data));
 });
 
-socket.on('disconnect', function(){
-    console.log(chalk.red('Disconnect'));
+pipeReader.on('pend', function(data){
+    console.log(chalk.blue(data));
 });
