@@ -5,18 +5,20 @@ const app = express();
 const controls = require(path.join(__dirname + '/controls'));
 const feedback = require(path.join(__dirname + '/feedback'));
 
+app.use(express.static('ui'));
+app.use(express.json());
+app.use(express.urlencoded());
+
 module.exports = {
     run: function () {
-        app.use(express.static('ui'));
-
         app.route('/').get(function (req, res) {
             res.sendFile(path.join(__dirname + '/ui/index.html'));
         }).post(function (req, res) {
-            console.log(req);
-            // if(req.body.shutdown === 1) {
-            //     controls.shutdown();
-            //     res.end("yes");
-            // }
+            if(req.body.shutdown === '1') {
+                controls.shutdown();
+            }
+
+            res.redirect('back');
         });
 
         app.listen(80, function () {
