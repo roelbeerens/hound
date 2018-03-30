@@ -3,6 +3,7 @@ const chalk = require("chalk");
 const express = require('express');
 const app = express();
 const controls = require(path.join(__dirname + '/modules/controls'));
+const feedback = require(path.join(__dirname + '/modules/feedback'));
 
 module.exports = {
     run: function () {
@@ -19,6 +20,7 @@ module.exports = {
 
         app.listen(80, function () {
             console.log(chalk.cyan('Started UI'));
+            feedback.startup();
         });
     }
 };

@@ -3,7 +3,7 @@ const chalk = require("chalk");
 
 module.exports = {
     shutdown: function () {
-        resin.models.device.shutdown(process.env.RESIN_APP_ID, function (error) {
+        resin.models.device.shutdown(process.env.RESIN_DEVICE_UUID, function (error) {
             if (error) {
                 console.log(chalk.red(error));
             }

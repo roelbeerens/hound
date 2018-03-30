@@ -2,7 +2,6 @@ const path = require('path');
 const shairport = require(path.join(__dirname + '/modules/shairport-sync'));
 const raspotify = require(path.join(__dirname + '/modules/raspotify'));
 const ui = require(path.join(__dirname + '/modules/ui'));
-const feedback = require(path.join(__dirname + '/modules/feedback'));
 
 //Shairport
 shairport.run();
@@ -12,6 +11,3 @@ raspotify.run();
 
 //Ui
 ui.run();
-
-//Give feedback
-feedback.startup();
