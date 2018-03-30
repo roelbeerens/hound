@@ -1,6 +1,6 @@
 // import the module
-var ShairportReader = require('shairport-sync-reader');
-var pipeReader = new ShairportReader({ address: '127.0.0.1', port: '5555' });
+const ShairportReader = require('shairport-sync-reader');
+const pipeReader = new ShairportReader({ path: '/tmp/shairport-sync-metadata' });
 
 pipeReader.on('pbeg', function(data){
     console.log(chalk.blue(data));
