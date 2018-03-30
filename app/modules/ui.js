@@ -7,7 +7,9 @@ const feedback = require(path.join(__dirname + '/feedback'));
 
 app.use(express.static('ui'));
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({
+    extended: true
+}));
 
 module.exports = {
     run: function () {
