@@ -5,7 +5,9 @@ const tunein = new TuneIn({
     cacheTTL: 1000 * 60 * 5,    // TTL for cached results, default 5 mins
 });
 let mpv = require('node-mpv');
-let mpvPlayer = new mpv();
+let mpvPlayer = new mpv({
+    'audio_only': true,
+});
 
 tunein.browse_local().then(function (result) {
     let stations = result.body[0].children;
