@@ -23,6 +23,7 @@ RUN apt-get update \
     libpopt-dev \
     libconfig-dev \
     libasound2-dev \
+    libasound2-plugin-equal \
     avahi-daemon \
     libavahi-client-dev \
     libssl-dev \
