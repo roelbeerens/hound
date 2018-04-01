@@ -2,16 +2,6 @@
 
 export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 
-dbus-send \
-    --system \
-    --print-reply \
-    --reply-timeout=2000 \
-    --type=method_call \
-    --dest=org.freedesktop.Avahi \
-    / \
-    org.freedesktop.Avahi.Server.SetHostName \
-    string:"hound.local"
-
 # Is there an active WiFi connection?
 SSID=`iwgetid -r`
 

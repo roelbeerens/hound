@@ -58,6 +58,9 @@ COPY ./config/asound.conf /etc/asound.conf
 # Configure Raspotify
 COPY ./config/raspotify.conf /etc/default/raspotify
 
+# Configure Avahi
+COPY ./config/avahi-daemon.conf /etc/avahi/
+
 # Enable services - we will manually start it later
 RUN systemctl disable shairport-sync raspotify
 
