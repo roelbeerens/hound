@@ -6,7 +6,7 @@ RUN apt-get update \
     && apt-get -y upgrade \
     && apt-get install -y --no-install-recommends \
     nano \
-    omxplayer \
+    mpv \
     dnsmasq \
     wireless-tools \
     alsa-base \

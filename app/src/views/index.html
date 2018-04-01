@@ -22,24 +22,50 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto">
                 <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="/tunein">TuneIn</a>
+                <a class="nav-item nav-link" href="/radio">Radio</a>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" name="reboot" value="1">Reboot</button>
+                <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" name="reboot" value="1">Reboot
+                </button>
             </form>
         </div>
     </div>
 </nav>
 <main class="main">
     <div class="container">
-        <div class="row stations">
+        <div class="row">
+            <div class="col-12">
+                <header>
+                    <h1>Welcome</h1>
+                </header>
+                <div class="content">
+                    <p>Welcome to Hound 🐶. A portal for streaming your music on your custom made speakers.</p>
+                    <p>Hound currently supports Apple Airplay, Spotify Connect and TuneIn.</p>
+                    <p>For feature requests and/or bugs, please contact me on: <a href="mailto:rjbeerens@gmail.com">rjbeerens@gmail.com</a></p>
+                    <p>Happy streaming! 🎉</p>
+                </div>
+            </div>
         </div>
     </div>
 </main>
 <footer>
     <nav class="navbar fixed-bottom navbar-light bg-light volume-slider">
+        <div class="now-playing">
+            <div class="container text-truncate">
+                <a class="muted">🔈 Now Playing:</a>
+                <span></span>
+            </div>
+        </div>
         <div class="container">
-            <input type="range" min="1" max="100" value="20" class="slider" id="volume">
+            <div class="d-flex">
+                <div class="mr-auto d-flex controls">
+                    <a href="#" class="stop">Stop</a>
+                    <a href="#" class="mute">Mute</a>
+                </div>
+                <div class="slider-holder">
+                    <input type="range" min="1" max="100" value="20" class="slider" id="volume">
+                </div>
+            </div>
         </div>
     </nav>
 </footer>

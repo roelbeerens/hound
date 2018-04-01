@@ -1,13 +1,13 @@
 const path = require('path');
 const shairport = require(path.join(__dirname + '/modules/shairport-sync'));
 const raspotify = require(path.join(__dirname + '/modules/raspotify'));
-const ui = require(path.join(__dirname + '/modules/ui'));
+const app = require(path.join(__dirname + '/modules/app'));
 
 //Shairport
-shairport.run();
+shairport.init();
 
 //Raspotify
-raspotify.run();
+raspotify.init();
 
-//Ui
-ui.run();
+//App
+app.init();
