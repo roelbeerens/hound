@@ -1,6 +1,8 @@
 const mpv = require('node-mpv');
 const player = new mpv({
-    'audio_only': true
+    'audio_only': true,
+    'verbose': false,
+    'debug': false,
 }, [
     '--volume=20'
 ]);
