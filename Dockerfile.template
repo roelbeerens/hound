@@ -2,8 +2,11 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:slim
 
 ENV INITSYSTEM on
 
-RUN apt-get install -y --no-install-recommends \
-    software-properties-common
+RUN apt-get update \
+    && apt-get -y upgrade \
+    && apt-get install -y --no-install-recommends \
+    software-properties-common \
+    python-software-properties
 
 RUN add-apt-repository ppa:mc3man/mpv-tests
 
