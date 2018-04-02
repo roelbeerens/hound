@@ -1,14 +1,6 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-node:slim
+FROM resin/%%RESIN_MACHINE_NAME%%-node:9.9.0
 
 ENV INITSYSTEM on
-
-RUN apt-get update \
-    && apt-get -y upgrade \
-    && apt-get install -y --no-install-recommends \
-    software-properties-common
-
-RUN add-apt-repository "deb http://security.debian.org/ buster/updates main contrib non-free" \
-    && add-apt-repository "deb-src http://security.debian.org/ buster/updates main contrib non-free"
 
 RUN apt-get update \
     && apt-get -y upgrade \
