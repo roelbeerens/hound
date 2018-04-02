@@ -15,7 +15,10 @@ function playerStatus() {
         } else {
             $('.controls .mute').html('Mute');
         }
-        $('.slider').val(status.volume);
+
+        if (status.volume !== null) {
+            $('.slider').val(status.volume);
+        }
 
         if (status["media-title"] !== null) {
             $('body').addClass('playing');
@@ -130,7 +133,11 @@ $(document).ready(function () {
                 }
             },
         }).done(function (status) {
-            if (status.message === 'OK') {
+            if (status.message === 'OK' && $this.hasClass('muted')) {
+                $this.removeClass('muted');
+                $this.html('Mute');
+            } else {
+                $this.addClass('muted');
                 $this.html('Unmute');
             }
         });
