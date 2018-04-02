@@ -21,8 +21,13 @@ function playerStatus() {
         }
 
         if (status["media-title"] !== null) {
+            var title = status["media-title"];
             $('body').addClass('playing');
-            $('.now-playing span').html(status["media-title"]);
+            if (title.includes('mp3')) {
+                $('.now-playing span').html('Fetching Information...');
+            } else {
+                $('.now-playing span').html(title);
+            }
         } else {
             $('body').removeClass('playing');
         }
@@ -38,6 +43,9 @@ function stopPlayer() {
             }
         },
     }).done(function (status) {
+        if ($('body').hasClass('playing')) {
+            $('body').removeClass('playing');
+        }
         return status;
     });
 }
