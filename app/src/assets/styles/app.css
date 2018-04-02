@@ -1,6 +1,14 @@
+html {
+    background: var(--primary);
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
 .main {
-    margin-top: 56px;
-    padding-top: 15px;
+    padding-top: 71px;
     padding-bottom: 56px;
 }
 

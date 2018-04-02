@@ -4,7 +4,10 @@
     <title>Hound</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#007bff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
     <link rel="stylesheet" href="/assets/styles/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/styles/app.css">
     <script src="/assets/scripts/jquery.min.js"></script>
@@ -15,14 +18,14 @@
 <body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-        <a href="/" class="navbar-brand">Hound</a>
+        <a href="/" class="navbar-brand link">Hound</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="/radio">Radio</a>
+                <a class="nav-item nav-link link" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link link" href="/radio">Radio</a>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="post" action="/">
                 <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" name="reboot" value="1">Reboot
