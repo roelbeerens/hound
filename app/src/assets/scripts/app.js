@@ -70,6 +70,12 @@ function renderStations(result) {
   });
 }
 
+function renderAudio(profile) {
+  if (profile) {
+    $('select[name="profile"]').val(profile);
+  }
+}
+
 $(document).ready(function () {
 
   $(document).on('click', '.link', function (event) {
@@ -184,4 +190,30 @@ $(document).ready(function () {
   setInterval(function () {
     playerStatus();
   }, 5000);
+
+  $('select[name="profile"]').on('change', function (e) {
+    e.preventDefault();
+
+    let profile = $(this).val();
+
+    $.ajax({
+      url: '/audio/profile/set',
+      method: 'POST',
+      data: {
+        'profile': profile,
+      },
+    }).done(function (result) {
+      renderAudio(result);
+    });
+
+    return false;
+  });
+
+  if ($('.audio form').length) {
+    $.ajax({
+      url: '/audio/profile/get',
+    }).done(function (result) {
+      renderAudio(result);
+    });
+  }
 });

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hound</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+    <link rel="stylesheet" href="/assets/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/styles/app.css">
+    <script src="/assets/scripts/jquery.min.js"></script>
+    <script src="/assets/scripts/bootstrap.min.js"></script>
+    <script src="/assets/scripts/app.js"></script>
+</head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a href="/" class="navbar-brand link">Hound</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav mr-auto">
+                <a class="nav-item nav-link link" href="/">Home</a>
+                <a class="nav-item nav-link link" href="/radio">Radio</a>
+                <a class="nav-item nav-link link" href="/audio">Audio</a>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" method="post" action="/">
+                <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" name="reboot" value="1">Reboot
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+<main class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <header>
+                    <h1>Audio</h1>
+                </header>
+            </div>
+        </div>
+        <div class="row audio">
+            <div class="col-12">
+                <p>Select your audio profile.</p>
+                <form method="POST" action="/audio/profile">
+                    <div class="form-group">
+                        <select class="form-control" name="profile">
+                            <option value="flat">Flat</option>
+                            <option value="classical">Classical</option>
+                            <option value="club">Club</option>
+                            <option value="dance">Dance</option>
+                            <option value="bass">Bass</option>
+                            <option value="treble">Treble</option>
+                            <option value="large_hall">Large Hall</option>
+                            <option value="live">Live</option>
+                            <option value="party">Party</option>
+                            <option value="pop">Pop</option>
+                            <option value="reggae">Reggae</option>
+                            <option value="rock">Rock</option>
+                            <option value="soft_rock">Soft Rock</option>
+                            <option value="soft">Soft</option>
+                            <option value="techno">Techno</option>
+                            <!--<option value="custom">Custom</option>-->
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="custom custom-audio text-center d-none">
+            <header class="text-left">
+                <h3>Custom Profile</h3>
+            </header>
+            <div class="form-holder">
+                <form method="POST">
+                    <div class="row">
+                        <div class="col">
+                            <div class="slider-wrapper">
+                                <input type="range" class="slider slider-vertical" orient="vertical" name="equal[]"/>
+                            </div>
+                            <p>31 Hz</p>
+                        </div>
+                        <div class="col">
+                            <div class="slider-wrapper">
+                                <input type="range" class="slider slider-vertical" orient="vertical" name="equal[]"/>
+                            </div>
+                            <p>63 Hz</p>
+                        </div>
+                        <div class="col">
+                            <div class="slider-wrapper">
+                                <input type="range" class="slider slider-vertical" orient="vertical" name="equal[]"/>
+                            </div>
+                            <p>125 Hz</p>
+                        </div>
+                        <div class="col">
+                            <div class="slider-wrapper">
+                                <input type="range" class="slider slider-vertical" orient="vertical" name="equal[]"/>
+                            </div>
+                            <p>250 Hz</p>
+                        </div>
+                        <div class="col">
+                            <div class="slider-wrapper">
+                                <input type="range" class="slider slider-vertical" orient="vertical" name="equal[]"/>
+                            </div>
+                            <p>500 Hz</p>
+                        </div>
+                        <div class="col">
+                            <div class="slider-wrapper">
+                                <input type="range" class="slider slider-vertical" orient="vertical" name="equal[]"/>
+                            </div>
+                            <p>1 kHz</p>
+                        </div>
+                        <div class="col">
+                            <div class="slider-wrapper">
+                                <input type="range" class="slider slider-vertical" orient="vertical" name="equal[]"/>
+                            </div>
+                            <p>2 kHz</p>
+                        </div>
+                        <div class="col">
+                            <div class="slider-wrapper">
+                                <input type="range" class="slider slider-vertical" orient="vertical" name="equal[]"/>
+                            </div>
+                            <p>4 kHz</p>
+                        </div>
+                        <div class="col">
+                            <div class="slider-wrapper">
+                                <input type="range" class="slider slider-vertical" orient="vertical" name="equal[]"/>
+                            </div>
+                            <p>8 kHz</p>
+                        </div>
+                        <div class="col">
+                            <div class="slider-wrapper">
+                                <input type="range" class="slider slider-vertical" orient="vertical" name="equal[]"/>
+                            </div>
+                            <p>16 kHz</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <nav class="navbar fixed-bottom navbar-light bg-light volume-slider">
+        <div class="now-playing">
+            <div class="container text-truncate">
+                <a class="muted">🔈 Now Playing:</a>
+                <span></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="d-flex">
+                <div class="mr-auto d-flex controls">
+                    <a href="#" class="stop">Stop</a>
+                    <a href="#" class="mute">Mute</a>
+                </div>
+                <div class="slider-holder">
+                    <input type="range" min="1" max="100" value="20" class="slider" id="volume">
+                </div>
+            </div>
+        </div>
+    </nav>
+</footer>
+</body>
+</html>

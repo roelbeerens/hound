@@ -134,9 +134,58 @@ body.playing .volume-slider .now-playing, body.playing .volume-slider .stop {
     width: 100%;
 }
 
+.custom-audio {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.custom-audio form {
+    margin-top: 30px;
+}
+
+@media (max-width: 575px) {
+    .custom-audio .col {
+        flex-basis: inherit;
+        display: -webkit-box!important;
+        display: -ms-flexbox!important;
+        display: flex!important;
+        -webkit-box-orient: horizontal!important;
+        -webkit-box-direction: reverse!important;
+        -ms-flex-direction: row-reverse!important;
+        flex-direction: row-reverse!important;
+    }
+
+    .custom-audio .col .slider-wrapper {
+        width: 100%;
+    }
+
+    .custom-audio .col p {
+        white-space: nowrap;
+        min-width: 70px;
+        text-align: left;
+    }
+}
+
 @media (min-width: 576px) {
     .container {
         padding-left: 0;
         padding-right: 0;
+    }
+
+
+    .slider-wrapper {
+        display: inline-block;
+        width: 20px;
+        height: 200px;
+        padding: 0;
+        margin-bottom: 15px;
+    }
+
+    .slider.slider-vertical {
+        width: 200px;
+        height: 10px;
+        margin: 0;
+        transform-origin: 98px 93px;
+        transform: rotate(-90deg);
     }
 }
