@@ -6,7 +6,7 @@ set_equalizer_curve() {
   for point in ${curve}
   do
     ctl=$(( ${ctl} + 1 ))
-    cset numid=${ctl} ${point}
+    echo cset numid=${ctl} ${point}
   done | amixer -D equal -s
 }
 
