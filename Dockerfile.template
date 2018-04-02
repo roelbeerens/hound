@@ -2,7 +2,8 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:slim
 
 ENV INITSYSTEM on
 
-RUN apt-get update \
+RUN add-apt-repository ppa:mc3man/mpv-tests \
+    && apt-get update \
     && apt-get -y upgrade \
     && apt-get install -y --no-install-recommends \
     nano \

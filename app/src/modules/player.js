@@ -1,10 +1,12 @@
 const mpv = require('node-mpv');
 const player = new mpv({
     'audio_only': true,
-    'verbose': false,
-    'debug': false,
+    'verbose': true,
+    'debug': true,
 }, [
-    '--volume=20'
+    '--volume=20',
+    '--no-config',
+    '--load-scripts=no',
 ]);
 
 module.exports = {
