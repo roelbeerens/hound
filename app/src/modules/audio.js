@@ -7,7 +7,7 @@ const db = low(adapter);
 
 module.exports = {
   profile: function (profile) {
-    exec(`/usr/src/app/lib/equal/set ${profile}`, (error) => {
+    exec(`/usr/src/app/lib/equalizer/set_profile ${profile}`, (error) => {
       if (error) {
         console.log(chalk.red(`exec error: ${error}`));
         return;

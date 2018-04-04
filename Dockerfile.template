@@ -83,6 +83,6 @@ RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean --force &
 COPY ./app ./
 
 # Set Permissions
-RUN chmod +x ./lib/equal/set
+RUN chmod +x ./lib/equalizer/set_profile
 
 CMD ["bash", "start.sh"]
