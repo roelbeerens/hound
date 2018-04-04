@@ -1,15 +1,17 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-debian:buster
 
-ENV NODE_VERSION 9.9.0 \
-    && INITSYSTEM on
+ENV NODE_VERSION 9.9.0
 
 RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-armv6l.tar.gz" \
 	&& echo "0468e84d64d17179c8c11f7a7c97038b4cbc60a0850dadfdb46e718125389407  node-v9.9.0-linux-armv6l.tar.gz" | sha256sum -c - \
 	&& tar -xzf "node-v$NODE_VERSION-linux-armv6l.tar.gz" -C /usr/local --strip-components=1 \
 	&& rm "node-v$NODE_VERSION-linux-armv6l.tar.gz" \
 	&& npm config set unsafe-perm true -g --unsafe-perm \
-	&& rm -rf /tmp/* \
-	&& apt-get update \
+	&& rm -rf /tmp/*
+
+ENV INITSYSTEM on
+
+RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     mpv \
     dnsmasq \
@@ -36,22 +38,29 @@ RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-a
 
 WORKDIR /usr/src/app
 
-# Install Packages
+# Install Wifi Connect
 RUN curl https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest -s \
     | grep -hoP 'browser_download_url": "\K.*%%RESIN_ARCH%%\.tar\.gz' \
     | xargs -n1 curl -Ls \
     | tar -xvz -C /usr/src/app/ \
-    && rm -rf /usr/src/app/ui \
-    && git clone https://github.com/mikebrady/shairport-sync.git shairport-sync --depth 1 \
+    && rm -rf /usr/src/app/ui
+
+# Install shairport
+RUN git clone https://github.com/mikebrady/shairport-sync.git shairport-sync --depth 1 \
     && cd shairport-sync && autoreconf -i -f \
     && ./configure --with-alsa --with-avahi --with-ssl=openssl --with-metadata --with-systemd --sysconfdir=/etc \
-    && make install && cd ../ && rm -rf shairport-sync \
-    && curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
+    && make install && cd ../ && rm -rf shairport-sync
+
+# Install Raspotify
+RUN curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
 
 # Set config files
 COPY ./config/shairport-sync.conf /etc/shairport-sync.conf \
   && ./config/raspotify.conf /etc/default/raspotify \
   && ./config/asound.conf /etc/asound.conf
+
+# Enable services - we will manually start it later
+RUN systemctl disable shairport-sync raspotify
 
 # Copies the package.json first for better cache on later pushes
 COPY ./app/package.json ./package.json \
@@ -64,8 +73,7 @@ RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean --force &
 # This will copy all files in app to the working directory in the container
 COPY ./app ./
 
-# Set Permissions & disable services
-RUN chmod +x ./lib/equalizer/set_profile \
-    && systemctl disable shairport-sync raspotify
+# Set Permissions
+RUN chmod +x ./lib/equalizer/set_profile
 
 CMD ["bash", "start.sh"]
