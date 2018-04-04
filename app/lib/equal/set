@@ -7,7 +7,7 @@ set_equalizer_curve() {
   do
     ctl=$(( ${ctl} + 1 ))
     echo cset numid=${ctl} ${point}
-  done | amixer -D equal -s
+  done | alsamixer -D equal -s
 }
 
 profile="${1:-flat}"
@@ -16,8 +16,6 @@ flat) curve="65 65 65 65 65 65 65 65 65 65" ;;
 classical) curve="71 71 71 71 71 71 84 83 83 87" ;;
 club) curve="71 71 67 63 63 63 67 71 71 71" ;;
 dance) curve="57 61 69 71 71 81 83 83 71 71" ;;
-bass) curve="59 59 59 63 70 78 85 88 89 89" ;;
-treble) curve="87 87 87 78 68 55 47 47 47 45" ;;
 large_hall) curve="56 56 63 63 71 79 79 79 71 71" ;;
 live) curve="79 71 66 64 63 63 66 68 68 69" ;;
 party) curve="61 61 71 71 71 71 71 71 61 61" ;;
