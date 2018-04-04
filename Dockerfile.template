@@ -12,10 +12,7 @@ RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-a
 ENV INITSYSTEM on
 
 RUN apt-get update \
-    && apt-get -y upgrade \
     && apt-get install -y --no-install-recommends \
-    apt-utils \
-    nano \
     mpv \
     dnsmasq \
     wireless-tools \
@@ -23,7 +20,6 @@ RUN apt-get update \
     alsa-utils \
     build-essential \
     git \
-    curl \
     xmltoman \
     autoconf \
     make \
