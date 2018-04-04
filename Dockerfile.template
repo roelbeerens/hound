@@ -12,7 +12,10 @@ RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-a
 ENV INITSYSTEM on
 
 RUN apt-get update \
+    && apt-get -y upgrade \
     && apt-get install -y --no-install-recommends \
+    apt-utils \
+    nano \
     mpv \
     dnsmasq \
     wireless-tools \
@@ -42,8 +45,9 @@ WORKDIR /usr/src/app
 RUN curl https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest -s \
     | grep -hoP 'browser_download_url": "\K.*%%RESIN_ARCH%%\.tar\.gz' \
     | xargs -n1 curl -Ls \
-    | tar -xvz -C /usr/src/app/ \
-    && rm -rf /usr/src/app/ui
+    | tar -xvz -C /usr/src/app/
+
+RUN rm -rf /usr/src/app/ui
 
 # Install shairport
 RUN git clone https://github.com/mikebrady/shairport-sync.git shairport-sync --depth 1 \
@@ -54,17 +58,21 @@ RUN git clone https://github.com/mikebrady/shairport-sync.git shairport-sync --d
 # Install Raspotify
 RUN curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
 
-# Set config files
-COPY ./config/shairport-sync.conf /etc/shairport-sync.conf \
-  && ./config/raspotify.conf /etc/default/raspotify \
-  && ./config/asound.conf /etc/asound.conf
+# Configure Shairport Sync
+COPY ./config/shairport-sync.conf /etc/shairport-sync.conf
+
+# Configure DAC
+COPY ./config/asound.conf /etc/asound.conf
+
+# Configure Raspotify
+COPY ./config/raspotify.conf /etc/default/raspotify
 
 # Enable services - we will manually start it later
 RUN systemctl disable shairport-sync raspotify
 
 # Copies the package.json first for better cache on later pushes
-COPY ./app/package.json ./package.json \
-    && ./app/package-lock.json ./package-lock.json
+COPY ./app/package.json ./package.json
+COPY ./app/package-lock.json ./package-lock.json
 
 # This install npm dependencies on the resin.io build server,
 # making sure to clean up the artifacts it creates in order to reduce the image size.
