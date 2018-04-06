@@ -1,5 +1,5 @@
-const exec = require('child_process').exec;
-const chalk = require('chalk');
+const exec = require('child_process').exec
+const chalk = require('chalk')
 
 exec('shairport-sync', (error) => {
   if (error) {
