@@ -1,8 +1,0 @@
-const express = require('express')
-const router = express.Router()
-
-router.get('/settings', function (req, res) {
-  res.send('settings')
-})
-
-module.exports = router
