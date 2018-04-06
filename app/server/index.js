@@ -5,7 +5,6 @@ const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync('db.json')
 const db = low(adapter)
 const app = express()
-const host = process.env.HOST || 'localhost'
 const port = process.env.PORT || 80
 const api = require('./api')
 
@@ -38,6 +37,6 @@ app.route('/').get(function (req, res) {
   res.sendFile('../dist/index.html')
 })
 
-app.listen(port, host, function () {
-  console.log(chalk.cyan('Started UI on ' + host + ':' + port))
+app.listen(port, function () {
+  console.log(chalk.cyan('Started UI on port: ' + port))
 })
