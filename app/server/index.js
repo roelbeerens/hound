@@ -5,7 +5,7 @@ const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync('db.json')
 const db = low(adapter)
 const app = express()
-const port = process.env.PORT || 80
+const port = process.env.PORT || 3000
 const api = require('./api')
 
 // Setup databbase

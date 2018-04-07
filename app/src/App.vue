@@ -24,29 +24,31 @@
 </script>
 
 <style lang="scss">
-    h1 {
-        font-weight: 700;
-        margin-bottom: 1rem;
-    }
     main {
         padding-top: 56px;
         padding-bottom: 56px;
-    }
-    figure {
-        margin: 0;
-    }
-    .hmt {
-        margin-top: 2rem;
-    }
-    .hmb {
-        margin-bottom: 2rem;
-    }
-    .btn-sm {
-        border-radius: 1rem;
-        padding: .25rem 1rem;
 
-        .fa-icon {
-            margin-bottom: 2px;
+        h1 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        figure {
+            margin: 0;
+        }
+        .hmt {
+            margin-top: 2rem;
+        }
+        .hmb {
+            margin-bottom: 2rem;
+        }
+        .btn-sm {
+            border-radius: 1rem;
+            padding: .25rem 1rem;
+
+            .fa-icon {
+                margin-bottom: 2px;
+            }
         }
     }
     .fa-icon {

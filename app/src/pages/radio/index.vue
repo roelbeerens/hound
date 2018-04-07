@@ -173,21 +173,29 @@
         margin-top: 1.5rem;
     }
 
-    .stations {
+    .stations:last-child {
         margin-bottom: 1rem;
     }
 
     .station {
         .station__image {
-            padding: 1rem;
-            height: 100px;
-            min-width: 100px;
-            max-width: 100px;
+            padding: 0.5rem;
+            height: 80px;
+            min-width: 80px;
+            max-width: 80px;
             border-radius: 1rem;
             position: relative;
             overflow: hidden;
             margin-right: 1rem;
             background: var(--light);
+            border: 1px solid rgba(#ced4da, .15);
+
+            @media (min-width: 576px) {
+                padding: 1rem;
+                height: 100px;
+                min-width: 100px;
+                max-width: 100px;
+            }
 
             &-blur {
                 -webkit-filter: blur(1rem);
@@ -208,10 +216,30 @@
             }
         }
         .stations__content {
-            border-bottom: 1px solid #ced4da;
+            border-bottom: 1px solid rgba(#ced4da, .5);
             margin-bottom: 1rem;
             width: 100%;
             overflow: hidden;
+
+            header {
+                h5 {
+                    font-size: 1rem;
+                    margin-bottom: .25rem;
+
+                    @media (min-width: 576px) {
+                        font-size: 1.25rem;
+                        margin-bottom: .5rem;
+                    }
+                }
+
+                p {
+                    margin-bottom: .5rem;
+
+                    @media (min-width: 576px) {
+                        margin-bottom: 1rem;
+                    }
+                }
+            }
 
             footer {
                 margin-bottom: 1rem;

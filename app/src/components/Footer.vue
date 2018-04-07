@@ -153,6 +153,7 @@
                 .controls__buttons-stop {
                     padding-right: 15px;
                     display: none;
+                    min-width: 32px;
                 }
                 .controls__buttons-mute {
                     padding-right: 15px;
