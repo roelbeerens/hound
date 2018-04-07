@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" class="loading">
         <navigation></navigation>
         <controls></controls>
         <main>
@@ -19,11 +19,43 @@
     components: {
       'navigation': Header,
       'controls': Footer
+    },
+    mounted: function () {
+      setTimeout(function () {
+        let loader = document.getElementById('app')
+        loader.classList.remove('loading')
+      }, 1500)
     }
   }
 </script>
 
 <style lang="scss">
+    #app {
+        &:before {
+            content: '';
+            background-color: var(--primary);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-image: url('../static/apple-touch-icon.png');
+            background-size: 100px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            visibility: hidden;
+            transition: visibility 0s linear 0.5s, opacity 0.5s linear;
+        }
+        &.loading {
+            &:before {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+
     main {
         padding-top: 56px;
         padding-bottom: 56px;
@@ -51,9 +83,11 @@
             }
         }
     }
+
     .fa-icon {
         vertical-align: middle;
     }
+
     @media (min-width: 576px) {
         .container {
             padding-left: 0;

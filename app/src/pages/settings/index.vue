@@ -75,7 +75,13 @@
         }
       },
       reboot: function () {
-        //
+        axios.post(process.env.API + '/supervisor/reboot')
+          .then(response => {
+            console.log(response)
+          })
+          .catch(e => {
+            console.log(e)
+          })
       }
     },
     filters: {
