@@ -7,6 +7,7 @@ const db = low(adapter)
 const app = express()
 const port = process.env.PORT || 3000
 const api = require('./api')
+const player = require('./api/player')
 
 // Setup databbase
 db.defaults({radio_stations: [], settings: {}})
@@ -39,4 +40,7 @@ app.route('/').get(function (req, res) {
 
 app.listen(port, function () {
   console.log(chalk.cyan('Started UI on port: ' + port))
+  player.player.volume(30)
+  player.player.load(__dirname + '/../assets/audio/start.wav')
+  console.log(chalk.yellow('System online'))
 })
