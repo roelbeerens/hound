@@ -16,14 +16,13 @@ RUN buildDeps='curl' \
 
 ENV INITSYSTEM on
 
-RUN add-apt-repository ppa:mc3man/mpv-tests
-
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+    software-properties-common \
+    python-software-properties \
     rpi-update \
     apt-utils \
     nano \
-    mpv=0.27.2-1 \
     curl \
     dnsmasq \
     wireless-tools \
@@ -45,12 +44,12 @@ RUN apt-get update \
     libavahi-client-dev \
     libssl-dev \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && rpi-update \
+    && add-apt-repository ppa:mc3man/mpv-tests \
+    && apt-get install mpv=0.27.2-1
 
 WORKDIR /usr/src/app
-
-# Updating
-RUN rpi-update
 
 # Install Wifi Connect
 RUN curl https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest -s \
