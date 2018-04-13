@@ -21,6 +21,7 @@ RUN apt-get update \
     apt-utils \
     nano \
     mpv \
+    curl \
     dnsmasq \
     wireless-tools \
     alsa-base \
