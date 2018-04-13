@@ -16,12 +16,14 @@ RUN buildDeps='curl' \
 
 ENV INITSYSTEM on
 
+RUN add-apt-repository ppa:mc3man/mpv-tests
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     rpi-update \
     apt-utils \
     nano \
-    mpv \
+    mpv=0.27.2-1 \
     curl \
     dnsmasq \
     wireless-tools \
