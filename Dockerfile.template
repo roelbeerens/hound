@@ -21,7 +21,7 @@ RUN apt-get update \
     rpi-update \
     apt-utils \
     nano \
-    mpv=0.27.2-1 \
+    mpv \
     curl \
     dnsmasq \
     wireless-tools \
