@@ -44,12 +44,14 @@ RUN apt-get update \
     libavahi-client-dev \
     libssl-dev \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && rpi-update \
-    && add-apt-repository ppa:mc3man/mpv-tests \
-    && apt-get install mpv
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
+
+# Updating & MPV
+RUN rpi-update \
+    && add-apt-repository ppa:mc3man/mpv-tests \
+    && apt-get install mpv=0.27.2-1
 
 # Install Wifi Connect
 RUN curl https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest -s \
