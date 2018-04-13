@@ -40,7 +40,7 @@ app.route('/').get(function (req, res) {
 
 app.listen(port, function () {
   console.log(chalk.cyan('Started UI on port: ' + port))
-  player.player.volume(30)
+  player.player.volume(50)
   player.player.load(__dirname + '/../assets/audio/start.wav')
   console.log(chalk.yellow('System online'))
 })
