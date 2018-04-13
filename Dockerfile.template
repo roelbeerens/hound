@@ -1,4 +1,4 @@
-FROM resin/rpi-raspbian:stretch
+FROM resin/rpi-raspbian:buster
 
 ENV NODE_VERSION 9.9.0
 
@@ -19,8 +19,10 @@ ENV INITSYSTEM on
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     apt-utils \
+    rpi-update \
     nano \
     mpv \
+    curl \
     dnsmasq \
     wireless-tools \
     alsa-base \
@@ -44,6 +46,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
+
+# Update
+RUN rpi-update
 
 # Install Wifi Connect
 RUN curl https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest -s \
