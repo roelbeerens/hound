@@ -47,7 +47,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && rpi-update \
     && add-apt-repository ppa:mc3man/mpv-tests \
-    && apt-get install mpv=0.27.2-1
+    && apt-get install mpv
 
 WORKDIR /usr/src/app
 
