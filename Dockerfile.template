@@ -2,8 +2,7 @@ FROM resin/rpi-raspbian:jessie
 
 ENV NODE_VERSION 9.9.0
 
-RUN rpi-update \
-    && buildDeps='curl' \
+RUN buildDeps='curl' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
@@ -19,6 +18,7 @@ ENV INITSYSTEM on
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+    rpi-update \
     apt-utils \
     nano \
     mpv=0.27.2-1 \
@@ -46,6 +46,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
+
+# Updating
+RUN rpi-update
 
 # Install Wifi Connect
 RUN curl https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest -s \
