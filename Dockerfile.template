@@ -82,7 +82,7 @@ COPY ./app/package-lock.json ./package-lock.json
 
 # This install npm dependencies on the resin.io build server,
 # making sure to clean up the artifacts it creates in order to reduce the image size.
-RUN JOBS=MAX npm install --only=production --unsafe-perm && npm cache clean --force && rm -rf /tmp/*
+RUN JOBS=MAX npm install --only=production && npm cache clean --force && rm -rf /tmp/*
 
 # This will copy all files in app to the working directory in the container
 COPY ./app ./
