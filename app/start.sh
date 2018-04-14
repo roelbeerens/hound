@@ -8,10 +8,10 @@ dbus-send \
     --print-reply \
     --reply-timeout=2000 \
     --type=method_call \
-    --dest=org.freedesktop.Avahi \
-    / \
-    org.freedesktop.Avahi.Server.SetHostName \
-    string:"hound"
+    --dest=org.freedesktop.hostname1 \
+    /org/freedesktop/hostname1 \
+    org.freedesktop.hostname1.SetStaticHostname \
+    string:"hound" boolean:true
 
 # Is there an active WiFi connection?
 SSID=`iwgetid -r`

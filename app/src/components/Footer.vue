@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar fixed-bottom navbar-light bg-light controls" v-bind:class="{ playing : now_playing }">
+    <nav class="navbar fixed-bottom navbar-light bg-light controls">
         <div class="controls__np">
             <div class="container text-truncate">
                 <a class="text-muted">
@@ -50,6 +50,13 @@
       }, 5000)
     },
     methods: {
+      isPlaying: function () {
+        if (this.now_playing) {
+          document.getElementById('app').classList.add('playing')
+        } else {
+          document.getElementById('app').classList.remove('playing')
+        }
+      },
       getStatus: function () {
         axios.get(process.env.API + '/player/status')
           .then(response => {
@@ -57,13 +64,17 @@
             if (response.data['media-title']) {
               if (response.data['media-title'].includes('wav')) {
                 this.now_playing = null
+                this.isPlaying()
               } else if (response.data['media-title'].includes('mp3')) {
                 this.now_playing = 'Fetching Information...'
+                this.isPlaying()
               } else {
                 this.now_playing = response.data['media-title'].toLowerCase()
+                this.isPlaying()
               }
             } else {
               this.now_playing = null
+              this.isPlaying()
             }
           })
           .catch(e => {
@@ -75,6 +86,7 @@
           .then(response => {
             if (response.data[0].status === 'stopped') {
               this.now_playing = null
+              this.isPlaying()
             }
           })
           .catch(e => {
@@ -114,14 +126,10 @@
 <style lang="scss">
     .controls {
         -webkit-transform: translate3d(0,0,0);
-        &.playing {
+        #app.playing & {
             .controls__np,
             .controls__buttons-stop {
                 display: block !important;
-            }
-
-            ~ main {
-                padding-bottom: 91px;
             }
         }
         .controls__np {

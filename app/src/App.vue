@@ -1,10 +1,10 @@
 <template>
     <div id="app" class="loading">
         <navigation></navigation>
-        <controls></controls>
         <main>
             <router-view/>
         </main>
+        <controls></controls>
     </div>
 </template>
 
@@ -59,6 +59,12 @@
     main {
         padding-top: 56px;
         padding-bottom: 56px;
+        position: relative;
+        z-index: 0;
+
+        #app.playing & {
+            padding-bottom: 91px;
+        }
 
         h1 {
             font-weight: 700;
