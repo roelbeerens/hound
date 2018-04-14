@@ -1,6 +1,7 @@
 FROM resin/rpi-raspbian:buster
 
-ENV NODE_VERSION 9.9.0
+ENV NODE_VERSION=9.9.0 \
+    INITSYSTEM=on
 
 RUN buildDeps='curl' \
 	&& set -x \
@@ -12,11 +13,8 @@ RUN buildDeps='curl' \
 	&& rm "node-v$NODE_VERSION-linux-armv6l.tar.gz" \
 	&& apt-get purge -y --auto-remove $buildDeps \
 	&& npm config set unsafe-perm true -g --unsafe-perm \
-	&& rm -rf /tmp/*
-
-ENV INITSYSTEM on
-
-RUN apt-get update \
+	&& rm -rf /tmp/* \
+    && apt-get update \
     && apt-get install -y --no-install-recommends \
     apt-utils \
     nano \
@@ -46,22 +44,17 @@ RUN apt-get update \
 
 WORKDIR /usr/src/app
 
-# Install Wifi Connect
+# Install Packages
 RUN curl https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest -s \
     | grep -hoP 'browser_download_url": "\K.*%%RESIN_ARCH%%\.tar\.gz' \
     | xargs -n1 curl -Ls \
-    | tar -xvz -C /usr/src/app/
-
-RUN rm -rf /usr/src/app/ui
-
-# Install shairport
-RUN git clone https://github.com/mikebrady/shairport-sync.git shairport-sync --depth 1 \
+    | tar -xvz -C /usr/src/app/ \
+    && rm -rf /usr/src/app/ui \
+    && git clone https://github.com/mikebrady/shairport-sync.git shairport-sync --depth 1 \
     && cd shairport-sync && autoreconf -i -f \
     && ./configure --with-alsa --with-avahi --with-ssl=openssl --with-metadata --with-systemd --sysconfdir=/etc \
-    && make install && cd ../ && rm -rf shairport-sync
-
-# Install Raspotify
-RUN curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
+    && make install && cd ../ && rm -rf shairport-sync \
+    && curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
 
 # Configure Shairport Sync
 COPY ./config/shairport-sync.conf /etc/shairport-sync.conf
@@ -77,8 +70,7 @@ COPY ./config/raspotify.conf /etc/default/raspotify
 RUN systemctl disable shairport-sync raspotify
 
 # Copies the package.json first for better cache on later pushes
-COPY ./app/package.json ./package.json
-COPY ./app/package-lock.json ./package-lock.json
+COPY ./app/package.json ./app/package-lock.json ./
 
 # This install npm dependencies on the resin.io build server,
 # making sure to clean up the artifacts it creates in order to reduce the image size.
