@@ -198,7 +198,7 @@
             }
 
             &-blur {
-                -webkit-filter: blur(1rem);
+                filter: blur(1rem);
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -206,6 +206,7 @@
                 height: 100%;
                 background-position: center center;
                 background-size: cover;
+                -webkit-transform: translate3d(0,0,0);
             }
 
             img {

@@ -113,6 +113,7 @@
 
 <style lang="scss">
     .controls {
+        -webkit-transform: translate3d(0,0,0);
         &.playing {
             .controls__np,
             .controls__buttons-stop {
