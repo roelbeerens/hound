@@ -2,7 +2,9 @@
     <nav class="navbar fixed-bottom navbar-light bg-light controls" v-bind:class="{ playing : now_playing }">
         <div class="controls__np">
             <div class="container text-truncate">
-                <a class="text-muted"><icon name="play"></icon> Now Playing:</a>
+                <a class="text-muted">
+                    <icon name="play"></icon>
+                    Now Playing:</a>
                 <span>{{ now_playing }}</span>
             </div>
         </div>
@@ -53,7 +55,9 @@
           .then(response => {
             this.current_volume = response.data.volume
             if (response.data['media-title']) {
-              if (response.data['media-title'].includes('mp3')) {
+              if (response.data['media-title'].includes('wav')) {
+                this.now_playing = null
+              } else if (response.data['media-title'].includes('mp3')) {
                 this.now_playing = 'Fetching Information...'
               } else {
                 this.now_playing = response.data['media-title'].toLowerCase()

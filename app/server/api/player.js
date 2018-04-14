@@ -6,7 +6,7 @@ const player = new mpv({
   'verbose': false,
   'debug': false,
 }, [
-  '--volume=20',
+  '--volume=40',
   '--no-config',
   '--load-scripts=no',
 ])

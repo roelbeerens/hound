@@ -66,8 +66,9 @@ RUN curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
 # Configure Shairport Sync
 COPY ./config/shairport-sync.conf /etc/shairport-sync.conf
 
-# Configure DAC
+# Configure DAC / Alsa
 COPY ./config/asound.conf /etc/asound.conf
+COPY ./config/asound.state /var/lib/alsa/asound.state
 
 # Configure Raspotify
 COPY ./config/raspotify.conf /etc/default/raspotify
