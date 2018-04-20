@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="loading">
+    <div id="app">
         <controls></controls>
         <main>
             <router-view/>
@@ -16,12 +16,6 @@
     name: 'App',
     components: {
       'controls': Footer
-    },
-    mounted: function () {
-      setTimeout(function () {
-        let loader = document.getElementById('app')
-        loader.classList.remove('loading')
-      }, 1500)
     }
   }
 </script>
@@ -128,6 +122,7 @@
             border-color: #2D2D30;
             outline: 0 !important;
             box-shadow: none !important;
+            color: #58565d;
 
             &::placeholder {
                 color: #58565d;
