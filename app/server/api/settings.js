@@ -6,6 +6,9 @@ const adapter = new FileSync('/data/settings.json')
 const db = low(adapter)
 const exec = require('child_process').exec
 
+db.defaults({ settings: {} })
+  .write()
+
 router.post('/settings/profile/set', function (req, res) {
   let profile = req.body.profile
   if (profile) {

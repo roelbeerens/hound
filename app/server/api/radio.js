@@ -12,6 +12,9 @@ const radio = new TuneIn({
 })
 const player = require('./player')
 
+db.defaults({ radio_stations: [] })
+  .write()
+
 router.get('/radio/stations', function (req, res) {
   radio.browse_local().then(function (result) {
     res.send(result.body[0].children)

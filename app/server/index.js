@@ -1,22 +1,9 @@
 const express = require('express')
 const chalk = require('chalk')
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
-const radio = new FileSync('/data/radio.json')
-const radio_db = low(radio)
-const settings = new FileSync('/data/settings.json')
-const settings_db = low(settings)
 const app = express()
 const port = process.env.PORT || 3000
 const api = require('./api')
 const player = require('./api/player')
-
-// Setup databbase
-radio_db.defaults({radio_stations: []})
-  .write()
-
-settings_db.defaults({settings: {}})
-  .write()
 
 // Set port
 app.set('port', port)
