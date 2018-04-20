@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
-const adapter = new FileSync('/data/hound.json')
+const adapter = new FileSync('/data/settings.json')
 const db = low(adapter)
 const exec = require('child_process').exec
 
