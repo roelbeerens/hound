@@ -216,16 +216,13 @@
             }
 
             &-blur {
-                filter: blur(1rem);
+                filter: blur(2rem);
                 opacity: 0.8;
                 position: absolute !important;
-                top: 50%;
-                left: 50%;
-                width: 150% !important;
-                height: 150% !important;
-                background-position: center center;
-                background-size: cover;
-                transform: translate(-50%, -50%);
+                top: 0;
+                left: 0;
+                width: 100% !important;
+                height: 100% !important;
             }
         }
         .stations__content {
