@@ -193,8 +193,10 @@
             background: #262528;
             border: none;
             box-shadow: 0 0 15px rgba(black, .1);
+            background-clip: padding-box;
 
             .station__image--inner {
+                width: 100%;
                 height: 100%;
                 display: flex;
                 align-items: center;
