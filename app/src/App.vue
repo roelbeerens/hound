@@ -132,6 +132,7 @@
             &:focus {
                 background: #2D2D30;
                 border-color: #2D2D30;
+                color: #58565d;
             }
         }
     }
