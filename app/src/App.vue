@@ -27,114 +27,117 @@
 </script>
 
 <style lang="scss">
-    body,
-    .bg-dark {
-        background: #262528 !important;
-        color: #58565d;
-    }
-
-    #app {
-        &:before {
-            content: '';
-            background-color: #262528;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            background-image: url('../static/hound.png');
-            background-size: 80px;
-            background-position: center center;
-            background-repeat: no-repeat;
-            opacity: 0;
-            visibility: hidden;
-            transition: visibility 0s linear 0.5s, opacity 0.5s linear;
+    html {
+        body,
+        .bg-dark {
+            background: #262528 !important;
+            color: #58565d;
         }
-        &.loading {
+
+        #app {
             &:before {
-                opacity: 1;
-                visibility: visible;
+                content: '';
+                background-color: #262528;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                opacity: 0;
+                visibility: hidden;
+                transition: visibility 0s linear 0.5s, opacity 0.5s linear;
+            }
+            &.loading {
+                &:before {
+                    opacity: 1;
+                    visibility: visible;
+                }
             }
         }
-    }
 
-    main {
-        padding-bottom: 56px;
+        main {
+            padding-bottom: 56px;
 
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #cccccc;
-        }
+            h1 {
+                font-size: 2.2rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                color: #cccccc;
+            }
 
-        figure {
-            margin: 0;
-        }
-        .hmt {
-            margin-top: 2rem;
-        }
-        .hmb {
-            margin-bottom: 2rem;
-        }
-        .btn-sm {
-            border-radius: 1rem;
-            padding: .25rem 1rem;
+            figure {
+                margin: 0;
+            }
+            .hmt {
+                margin-top: 2rem;
+            }
+            .hmb {
+                margin-bottom: 2rem;
+            }
+            .btn-sm {
+                border-radius: 1rem;
+                padding: .25rem 1rem;
 
-            .fa-icon {
-                margin-bottom: 2px;
+                .fa-icon {
+                    margin-bottom: 2px;
+                }
+            }
+
+            .container {
+                @media (min-width: 576px) {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
             }
         }
-    }
 
-    .fa-icon {
-        vertical-align: middle;
-    }
-
-    .btn {
-        box-shadow: none !important;
-    }
-
-    .btn-dark {
-        background: #2D2D30;
-        border: none;
-
-        &:hover {
-            background: #58565d !important;
-            color: #262528 !important;
+        .fa-icon {
+            vertical-align: middle;
         }
-    }
 
-    .btn-primary {
-        background: linear-gradient(to right, #DB815F, #D05D5C);
-        border: none;
-    }
-
-    a {
-        color: #DB815F;
-
-        &:hover {
-            color: #D05D5C;
+        .btn {
+            box-shadow: none !important;
         }
-    }
 
-    .form-control {
-        background: #2D2D30;
-        border-color: #2D2D30;
-        outline: 0 !important;
-        box-shadow: none !important;
+        .btn-dark {
+            background: #2D2D30;
+            border: none;
 
-        &:focus {
+            &:hover {
+                background: #58565d !important;
+                color: #262528 !important;
+            }
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #DB815F, #D05D5C);
+            border: none;
+        }
+
+        a {
+            color: #DB815F;
+
+            &:hover {
+                color: #D05D5C;
+            }
+        }
+
+        .form-control {
             background: #2D2D30;
             border-color: #2D2D30;
-        }
-    }
+            outline: 0 !important;
+            box-shadow: none !important;
 
-    @media (min-width: 576px) {
-        .container {
-            padding-left: 0;
-            padding-right: 0;
+            &::placeholder {
+                color: #58565d;
+                opacity: 1;
+            }
+
+            &:focus {
+                background: #2D2D30;
+                border-color: #2D2D30;
+            }
         }
     }
 </style>
