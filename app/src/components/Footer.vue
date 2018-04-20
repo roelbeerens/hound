@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar fixed-bottom navbar-light bg-light controls">
+    <nav class="navbar fixed-bottom navbar-light bg-dark controls" v-bind:class="{ playing : now_playing }">
         <div class="controls__np">
             <div class="container text-truncate">
                 <a class="text-muted">
@@ -26,8 +26,23 @@
                 <div class="controls__volume">
                     <input type="range" min="1" max="100" :value="current_volume" name="volume" class="controls__buttons-volume" id="volume" v-on:change="volume">
                 </div>
+                <b-navbar-toggle target="nav_collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar top-bar"></span>
+                    <span class="icon-bar middle-bar"></span>
+                    <span class="icon-bar bottom-bar"></span>
+                </b-navbar-toggle>
             </div>
         </div>
+        <b-collapse is-nav id="nav_collapse">
+            <div class="container">
+                <b-navbar-nav>
+                    <b-nav-item href="/#/">Home</b-nav-item>
+                    <b-nav-item href="/#/radio">Radio</b-nav-item>
+                    <b-nav-item href="/#/settings">Settings</b-nav-item>
+                </b-navbar-nav>
+            </div>
+        </b-collapse>
     </nav>
 </template>
 
@@ -50,13 +65,6 @@
       }, 5000)
     },
     methods: {
-      isPlaying: function () {
-        if (this.now_playing) {
-          document.getElementById('app').classList.add('playing')
-        } else {
-          document.getElementById('app').classList.remove('playing')
-        }
-      },
       getStatus: function () {
         axios.get(process.env.API + '/player/status')
           .then(response => {
@@ -64,17 +72,13 @@
             if (response.data['media-title']) {
               if (response.data['media-title'].includes('wav')) {
                 this.now_playing = null
-                this.isPlaying()
               } else if (response.data['media-title'].includes('mp3')) {
                 this.now_playing = 'Fetching Information...'
-                this.isPlaying()
               } else {
                 this.now_playing = response.data['media-title'].toLowerCase()
-                this.isPlaying()
               }
             } else {
               this.now_playing = null
-              this.isPlaying()
             }
           })
           .catch(e => {
@@ -86,7 +90,6 @@
           .then(response => {
             if (response.data[0].status === 'stopped') {
               this.now_playing = null
-              this.isPlaying()
             }
           })
           .catch(e => {
@@ -125,11 +128,18 @@
 
 <style lang="scss">
     .controls {
-        -webkit-transform: translate3d(0,0,0);
-        #app.playing & {
+        -webkit-transform: translate3d(0, 0, 0);
+        box-shadow: 0 0 15px rgba(black, .15);
+        border-top: 1px solid rgba(#434248, .25);
+        padding-bottom: 0.6rem;
+        &.playing {
             .controls__np,
             .controls__buttons-stop {
                 display: block !important;
+            }
+
+            ~ main {
+                padding-bottom: 91px;
             }
         }
         .controls__np {
@@ -138,7 +148,7 @@
             width: 100%;
             left: 0;
             font-size: 13px;
-            background: #f2f2f2;
+            background: #2D2D30;
             padding: 0 1rem;
             display: none;
             text-transform: capitalize;
@@ -158,6 +168,9 @@
         }
         .container {
             padding: 8px 0;
+        }
+        .text-muted {
+            color: #434248 !important;
         }
         .d-flex {
             width: 100%;
@@ -182,7 +195,7 @@
                 width: 100%;
                 height: 10px;
                 border-radius: 5px;
-                background: #d3d3d3;
+                background: #2D2D30;
                 outline: none;
                 -webkit-transition: opacity .15s ease-in-out;
                 transition: opacity .15s ease-in-out;
@@ -190,11 +203,99 @@
                     -webkit-appearance: none;
                     width: 20px;
                     height: 20px;
-                    background: var(--primary);
+                    margin: 5px;
+                    background: #58565d;
                     cursor: pointer;
                     border-radius: 50%;
                     border: none;
                     outline: none;
+                    margin-left: -1px;
+                }
+            }
+        }
+        a {
+            color: #58565d;
+        }
+        .navbar-toggler {
+            padding: 0;
+            border: none;
+            outline: 0;
+            margin-left: 15px;
+            .icon-bar {
+                background-color: #434248;
+                width: 22px;
+                transition: all 0.2s;
+                height: 2px;
+                display: block;
+                border-radius: 1px;
+
+                + .icon-bar {
+                    margin-top: 4px;
+                }
+            }
+            .top-bar {
+                transform: rotate(45deg);
+                transform-origin: 10% 10%;
+            }
+            .middle-bar {
+                opacity: 0;
+            }
+            .bottom-bar {
+                transform: rotate(-45deg);
+                transform-origin: 10% 90%;
+                max-width: 22px;
+                margin-left: 0px;
+            }
+
+            &[aria-expanded="false"] {
+                .top-bar {
+                    transform: rotate(0);
+                }
+                .middle-bar {
+                    opacity: 1;
+                }
+                .bottom-bar {
+                    transform: rotate(0);
+                    max-width: 18px;
+                    margin-left: 4px;
+                }
+            }
+        }
+        .navbar-collapse {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            width: 100%;
+            box-shadow: 0 0 15px rgba(black, .15);
+            border-top: 1px solid rgba(#434248, .25);
+            background: #262528;
+
+            .container {
+                padding: 5px 20px;
+
+                @media (min-width: 576px) {
+                    padding: 5px 5px;
+                }
+            }
+
+            .navbar-nav {
+                flex-direction: row;
+                justify-content: flex-end;
+            }
+
+            .nav-item:last-child {
+                .nav-link {
+                    padding-right: 0;
+                }
+            }
+
+            .nav-link {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                color: #434248 !important;
+
+                &:hover {
+                    color: #58565d !important;
                 }
             }
         }

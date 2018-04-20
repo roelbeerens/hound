@@ -6,8 +6,7 @@
                     <h1>Radio</h1>
                 </header>
                 <form class="stations-search d-flex" v-on:submit.prevent="search">
-                    <input name="search" class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" ref="query">
-                    <button class="btn btn-outline-success my-sm-0" type="submit">Search</button>
+                    <input name="search" class="form-control" type="search" placeholder="Search" aria-label="Search" ref="query">
                 </form>
                 <div class="row stations" v-if="favorites[0] && !searching">
                     <div class="col-12">
@@ -18,8 +17,10 @@
                     <div class="col-md-6 station" v-for="(favorite) in favorites" :key="favorite.body[0].guide_id">
                         <div class="d-flex">
                             <figure class="station__image">
-                                <div class="station__image-blur" v-bind:style="{ backgroundImage: 'url(' + favorite.body[0].logo + ')' }"></div>
-                                <img :src="favorite.body[0].logo"/>
+                                <div class="station__image--inner">
+                                    <div class="station__image-blur" v-bind:style="{ backgroundImage: 'url(' + favorite.body[0].logo + ')' }"></div>
+                                    <img :src="favorite.body[0].logo"/>
+                                </div>
                             </figure>
                             <div class="stations__content">
                                 <header>
@@ -27,7 +28,7 @@
                                     <p class="text-muted text-truncate small">{{ favorite.body[0].slogan }}</p>
                                 </header>
                                 <footer>
-                                    <button v-on:click="play" :data-guide-id="favorite.body[0].guide_id" class="station__play btn btn-sm btn-light">
+                                    <button v-on:click="play" :data-guide-id="favorite.body[0].guide_id" class="station__play btn btn-sm btn-dark">
                                         Play
                                     </button>
                                     <button v-on:click="favorite_remove" :data-guide-id="favorite.body[0].guide_id" class="station__favorite-remove btn btn-sm btn-danger">
@@ -47,8 +48,10 @@
                     <div class="col-md-6 station" v-for="(station) in stations" :key="station.guide_id">
                         <div class="d-flex">
                             <figure class="station__image">
-                                <div class="station__image-blur" v-bind:style="{ backgroundImage: 'url(' + station.image + ')' }"></div>
-                                <img :src="station.image"/>
+                                <div class="station__image--inner">
+                                    <div class="station__image-blur" v-bind:style="{ backgroundImage: 'url(' + station.image + ')' }"></div>
+                                    <img :src="station.image"/>
+                                </div>
                             </figure>
                             <div class="stations__content">
                                 <header>
@@ -56,7 +59,7 @@
                                     <p class="text-muted text-truncate small">{{ station.subtext }}</p>
                                 </header>
                                 <footer>
-                                    <button v-on:click="play" :data-guide-id="station.guide_id" class="station__play btn btn-sm btn-light">
+                                    <button v-on:click="play" :data-guide-id="station.guide_id" class="station__play btn btn-sm btn-dark">
                                         Play
                                     </button>
                                     <button v-on:click="favorite_add" :data-guide-id="station.guide_id" class="station__favorite btn btn-sm btn-primary">
@@ -187,8 +190,15 @@
             position: relative;
             overflow: hidden;
             margin-right: 1rem;
-            background: var(--light);
-            border: 1px solid rgba(#ced4da, .15);
+            background: #262528;
+            border: none;
+            box-shadow: 0 0 15px rgba(black, .1);
+
+            .station__image--inner {
+                height: 100%;
+                display: flex;
+                align-items: center;
+            }
 
             @media (min-width: 576px) {
                 padding: 1rem;
@@ -206,7 +216,6 @@
                 height: 100%;
                 background-position: center center;
                 background-size: cover;
-                -webkit-transform: translate3d(0,0,0);
             }
 
             img {
@@ -214,10 +223,11 @@
                 position: relative;
                 z-index: 2;
                 border-radius: 1rem;
+                display: inline-block;
             }
         }
         .stations__content {
-            border-bottom: 1px solid rgba(#ced4da, .5);
+            border-bottom: 1px solid rgba(#434248, .5);
             margin-bottom: 1rem;
             width: 100%;
             overflow: hidden;
@@ -231,6 +241,10 @@
                         font-size: 1.25rem;
                         margin-bottom: .5rem;
                     }
+                }
+
+                .text-muted {
+                    color: #4b4a50 !important;
                 }
 
                 p {
@@ -251,7 +265,7 @@
     .station__play {
         text-transform: uppercase;
         font-weight: 700;
-        color: var(--primary);
+        color: #4b4a50;
     }
 
     .station__favorite-remove,

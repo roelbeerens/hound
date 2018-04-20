@@ -1,23 +1,20 @@
 <template>
     <div id="app" class="loading">
-        <navigation></navigation>
+        <controls></controls>
         <main>
             <router-view/>
         </main>
-        <controls></controls>
     </div>
 </template>
 
 <script>
   import 'bootstrap/dist/css/bootstrap.css'
   import 'bootstrap-vue/dist/bootstrap-vue.css'
-  import Header from './components/Header'
   import Footer from './components/Footer'
 
   export default {
     name: 'App',
     components: {
-      'navigation': Header,
       'controls': Footer
     },
     mounted: function () {
@@ -30,18 +27,24 @@
 </script>
 
 <style lang="scss">
+    body,
+    .bg-dark {
+        background: #262528 !important;
+        color: #58565d;
+    }
+
     #app {
         &:before {
             content: '';
-            background-color: var(--primary);
+            background-color: #262528;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 9999;
-            background-image: url('../static/apple-touch-icon.png');
-            background-size: 100px;
+            background-image: url('../static/hound.png');
+            background-size: 80px;
             background-position: center center;
             background-repeat: no-repeat;
             opacity: 0;
@@ -57,18 +60,13 @@
     }
 
     main {
-        padding-top: 56px;
         padding-bottom: 56px;
-        position: relative;
-        z-index: 0;
-
-        #app.playing & {
-            padding-bottom: 91px;
-        }
 
         h1 {
+            font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 1rem;
+            color: #cccccc;
         }
 
         figure {
@@ -92,6 +90,45 @@
 
     .fa-icon {
         vertical-align: middle;
+    }
+
+    .btn {
+        box-shadow: none !important;
+    }
+
+    .btn-dark {
+        background: #2D2D30;
+        border: none;
+
+        &:hover {
+            background: #58565d !important;
+            color: #262528 !important;
+        }
+    }
+
+    .btn-primary {
+        background: linear-gradient(to right, #DB815F, #D05D5C);
+        border: none;
+    }
+
+    a {
+        color: #DB815F;
+
+        &:hover {
+            color: #D05D5C;
+        }
+    }
+
+    .form-control {
+        background: #2D2D30;
+        border-color: #2D2D30;
+        outline: 0 !important;
+        box-shadow: none !important;
+
+        &:focus {
+            background: #2D2D30;
+            border-color: #2D2D30;
+        }
     }
 
     @media (min-width: 576px) {
