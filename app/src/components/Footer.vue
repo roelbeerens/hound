@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar fixed-bottom navbar-light bg-dark controls" v-bind:class="{ playing : now_playing }">
+    <nav class="navbar fixed-bottom navbar-light controls" v-bind:class="{ playing : now_playing }">
         <div class="controls__np">
             <div class="container text-truncate">
                 <a class="text-muted">
@@ -53,7 +53,7 @@
     data () {
       return {
         now_playing: null,
-        current_volume: 20,
+        current_volume: 40,
         mute_status: false
       }
     },
@@ -129,9 +129,12 @@
 <style lang="scss">
     .controls {
         -webkit-transform: translate3d(0, 0, 0);
-        box-shadow: 0 0 15px rgba(black, .15);
         border-top: 1px solid rgba(#434248, .25);
         padding-bottom: 0.6rem;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba(#262528, 0.93) !important;
+
         &.playing {
             .controls__np,
             .controls__buttons-stop {
@@ -222,7 +225,7 @@
             outline: 0;
             margin-left: 15px;
             .icon-bar {
-                background-color: #434248;
+                background-color: #D05D5C;
                 width: 22px;
                 transition: all 0.2s;
                 height: 2px;
@@ -266,9 +269,11 @@
             bottom: 100%;
             left: 0;
             width: 100%;
-            box-shadow: 0 0 15px rgba(black, .15);
             border-top: 1px solid rgba(#434248, .25);
-            background: #262528;
+            border-bottom: 1px solid rgba(#434248, .25);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            background-color: rgba(#262528, 0.93) !important;
 
             .container {
                 padding: 5px 20px;
@@ -290,8 +295,8 @@
             }
 
             .nav-link {
-                padding-left: 1rem;
-                padding-right: 1rem;
+                padding-left: .5rem;
+                padding-right: .5rem;
                 color: #434248 !important;
 
                 &:hover {

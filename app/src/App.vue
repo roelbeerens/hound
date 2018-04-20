@@ -31,22 +31,14 @@
         #app {
             &:before {
                 content: '';
-                background-color: #262528;
+                background: linear-gradient(to bottom, #2b2a2d, #262528);
                 position: fixed;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                z-index: 9999;
-                opacity: 0;
-                visibility: hidden;
-                transition: visibility 0s linear 0.5s, opacity 0.5s linear;
-            }
-            &.loading {
-                &:before {
-                    opacity: 1;
-                    visibility: visible;
-                }
+                z-index: 0;
+                opacity: 1;
             }
         }
 
@@ -107,6 +99,10 @@
         .btn-primary {
             background: linear-gradient(to right, #DB815F, #D05D5C);
             border: none;
+
+            &:active, &:hover {
+                background: linear-gradient(to right, #D05D5C, #DB815F) !important;
+            }
         }
 
         a {

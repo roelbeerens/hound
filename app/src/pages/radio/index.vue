@@ -18,7 +18,7 @@
                         <div class="d-flex">
                             <figure class="station__image">
                                 <div class="station__image--inner">
-                                    <div class="station__image-blur" v-bind:style="{ backgroundImage: 'url(' + favorite.body[0].logo + ')' }"></div>
+                                    <img :src="favorite.body[0].logo" class="station__image-blur"/>
                                     <img :src="favorite.body[0].logo"/>
                                 </div>
                             </figure>
@@ -45,11 +45,11 @@
                             <h3>Stations</h3>
                         </header>
                     </div>
-                    <div class="col-md-6 station" v-for="(station) in stations" :key="station.guide_id">
+                    <div class="col-md-6 station" v-for="(station) in stations" :key="station.guide_id" v-if="station.item === 'station'">
                         <div class="d-flex">
                             <figure class="station__image">
                                 <div class="station__image--inner">
-                                    <div class="station__image-blur" v-bind:style="{ backgroundImage: 'url(' + station.image + ')' }"></div>
+                                    <img :src="station.image" class="station__image-blur"/>
                                     <img :src="station.image"/>
                                 </div>
                             </figure>
@@ -207,23 +207,25 @@
                 max-width: 100px;
             }
 
-            &-blur {
-                filter: blur(1rem);
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-position: center center;
-                background-size: cover;
-            }
-
             img {
                 width: 100%;
                 position: relative;
                 z-index: 2;
                 border-radius: 1rem;
                 display: inline-block;
+            }
+
+            &-blur {
+                filter: blur(1rem);
+                opacity: 0.8;
+                position: absolute !important;
+                top: 50%;
+                left: 50%;
+                width: 150% !important;
+                height: 150% !important;
+                background-position: center center;
+                background-size: cover;
+                transform: translate(-50%, -50%);
             }
         }
         .stations__content {
