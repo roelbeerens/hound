@@ -132,6 +132,7 @@
             guide_id: event.currentTarget.dataset.guideId
           })
             .then(response => {
+              this.favorites = []
               for (let stationKey in response.data) {
                 this.favorites.push(response.data[stationKey].body[0].guide_id)
               }
@@ -147,7 +148,10 @@
             guide_id: event.currentTarget.dataset.guideId
           })
             .then(response => {
-              this.favorites = response.data
+              this.favorites = []
+              for (let stationKey in response.data) {
+                this.favorites.push(response.data[stationKey].body[0].guide_id)
+              }
             })
             .catch(e => {
               console.log(e)

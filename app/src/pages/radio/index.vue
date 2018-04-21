@@ -140,6 +140,7 @@
             .then(response => {
               this.favorites = response.data
 
+              this.my_favorites = []
               for (let stationKey in response.data) {
                 this.my_favorites.push(response.data[stationKey].body[0].guide_id)
               }
@@ -157,6 +158,7 @@
             .then(response => {
               this.favorites = response.data
 
+              this.my_favorites = []
               for (let stationKey in response.data) {
                 this.my_favorites.push(response.data[stationKey].body[0].guide_id)
               }
