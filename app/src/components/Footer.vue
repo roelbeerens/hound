@@ -74,11 +74,18 @@
                 this.now_playing = null
               } else if (response.data['media-title'].includes('mp3')) {
                 this.now_playing = 'Fetching Information...'
+              } else if (response.data['media-title'].includes('http')) {
+                this.now_playing = 'Fetching Information...'
               } else {
                 this.now_playing = response.data['media-title'].toLowerCase()
               }
             } else {
               this.now_playing = null
+            }
+            if (response.data['mute']) {
+              this.mute_status = true
+            } else {
+              this.mute_status = false
             }
           })
           .catch(e => {

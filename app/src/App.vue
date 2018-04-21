@@ -31,7 +31,6 @@
         #app {
             &:before {
                 content: '';
-                background: linear-gradient(to bottom, #2b2a2d, #262528);
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -68,6 +67,12 @@
                 .fa-icon {
                     margin-bottom: 2px;
                 }
+            }
+            .btn-back {
+                text-transform: uppercase;
+                font-weight: 700;
+                color: #4b4a50;
+                margin-top: .25rem;
             }
 
             .container {

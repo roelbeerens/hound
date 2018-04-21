@@ -20,11 +20,18 @@
                                 <div class="station__image--inner">
                                     <img :src="favorite.body[0].logo" class="station__image-blur"/>
                                     <img :src="favorite.body[0].logo"/>
+                                    <div class="icon" v-on:click="play" :data-guide-id="favorite.body[0].guide_id">
+                                        <icon name="play"></icon>
+                                    </div>
                                 </div>
                             </figure>
                             <div class="stations__content">
                                 <header>
-                                    <h5 class="text-truncate">{{ favorite.body[0].call_sign }}</h5>
+                                    <h5 class="text-truncate">
+                                        <router-link v-bind:to="{ path: favorite.body[0].guide_id }" append>{{
+                                            favorite.body[0].call_sign }}
+                                        </router-link>
+                                    </h5>
                                     <p class="text-muted text-truncate small">{{ favorite.body[0].slogan }}</p>
                                 </header>
                                 <footer>
@@ -51,19 +58,28 @@
                                 <div class="station__image--inner">
                                     <img :src="station.image" class="station__image-blur"/>
                                     <img :src="station.image"/>
+                                    <div class="icon" v-on:click="play" :data-guide-id="station.guide_id">
+                                        <icon name="play"></icon>
+                                    </div>
                                 </div>
                             </figure>
                             <div class="stations__content">
                                 <header>
-                                    <h5 class="text-truncate">{{ station.text }}</h5>
+                                    <h5 class="text-truncate">
+                                        <router-link v-bind:to="{ path: station.guide_id }" append>{{ station.text }}
+                                        </router-link>
+                                    </h5>
                                     <p class="text-muted text-truncate small">{{ station.subtext }}</p>
                                 </header>
                                 <footer>
                                     <button v-on:click="play" :data-guide-id="station.guide_id" class="station__play btn btn-sm btn-dark">
                                         Play
                                     </button>
-                                    <button v-on:click="favorite_add" :data-guide-id="station.guide_id" class="station__favorite btn btn-sm btn-primary">
+                                    <button v-if="! inArray(station.guide_id, my_favorites)" v-on:click="favorite_add" :data-guide-id="station.guide_id" class="station__favorite btn btn-sm btn-primary">
                                         <icon name="heart"></icon>
+                                    </button>
+                                    <button v-if="inArray(station.guide_id, my_favorites)" v-on:click="favorite_remove" :data-guide-id="station.guide_id" class="station__favorite-remove btn btn-sm btn-danger">
+                                        <icon name="trash-alt"></icon>
                                     </button>
                                 </footer>
                             </div>
@@ -83,7 +99,8 @@
       return {
         searching: false,
         stations: [],
-        favorites: []
+        favorites: [],
+        my_favorites: []
       }
     },
     created () {
@@ -98,12 +115,23 @@
       axios.get(process.env.API + '/radio/favorites')
         .then(response => {
           this.favorites = response.data
+
+          for (let stationKey in response.data) {
+            this.my_favorites.push(response.data[stationKey].body[0].guide_id)
+          }
         })
         .catch(e => {
           console.log(e)
         })
     },
     methods: {
+      inArray: function (needle, haystack) {
+        let length = haystack.length
+        for (let i = 0; i < length; i++) {
+          if (haystack[i] === needle) return true
+        }
+        return false
+      },
       favorite_add: function (event) {
         if (event.currentTarget.dataset.guideId) {
           axios.post(process.env.API + '/radio/stations/favorite/add', {
@@ -111,6 +139,10 @@
           })
             .then(response => {
               this.favorites = response.data
+
+              for (let stationKey in response.data) {
+                this.my_favorites.push(response.data[stationKey].body[0].guide_id)
+              }
             })
             .catch(e => {
               console.log(e)
@@ -124,6 +156,10 @@
           })
             .then(response => {
               this.favorites = response.data
+
+              for (let stationKey in response.data) {
+                this.my_favorites.push(response.data[stationKey].body[0].guide_id)
+              }
             })
             .catch(e => {
               console.log(e)
@@ -200,6 +236,36 @@
                 height: 100%;
                 display: flex;
                 align-items: center;
+
+                &:hover {
+                    .icon {
+                        opacity: 1;
+                    }
+                }
+
+                .icon {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 2;
+                    background-color: rgba(white, 0.9) !important;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    border-radius: 50%;
+                    opacity: 0;
+                    cursor: pointer;
+                    transition: opacity 0.3s linear;
+                    box-shadow: 0 0 10px rgba(black, .1);
+
+                    .fa-icon {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-40%, -50%);
+                        z-index: 2;
+                    }
+                }
             }
 
             @media (min-width: 576px) {
@@ -237,6 +303,15 @@
                 h5 {
                     font-size: 1rem;
                     margin-bottom: .25rem;
+
+                    a {
+                        color: inherit;
+                        text-decoration: none;
+
+                        &:hover {
+                            color: #ccc;
+                        }
+                    }
 
                     @media (min-width: 576px) {
                         font-size: 1.25rem;
