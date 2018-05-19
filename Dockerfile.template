@@ -24,6 +24,7 @@ RUN buildDeps='curl' \
     wireless-tools \
     alsa-base \
     alsa-utils \
+    ladspa-sdk \
     build-essential \
     git \
     xmltoman \
