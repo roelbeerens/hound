@@ -25,6 +25,7 @@ RUN buildDeps='curl' \
     alsa-base \
     alsa-utils \
     ladspa-sdk \
+    cmt \
     build-essential \
     git \
     xmltoman \
