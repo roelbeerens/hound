@@ -1,6 +1,6 @@
 FROM resin/rpi-raspbian:buster
 
-ENV NODE_VERSION=9.9.0 \
+ENV NODE_VERSION=10.2.1 \
     INITSYSTEM=on
 
 RUN buildDeps='curl' \
@@ -8,7 +8,7 @@ RUN buildDeps='curl' \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-armv6l.tar.gz" \
-	&& echo "0468e84d64d17179c8c11f7a7c97038b4cbc60a0850dadfdb46e718125389407  node-v9.9.0-linux-armv6l.tar.gz" | sha256sum -c - \
+	&& echo "ba6fb37ffe03fb197de2b17a42a0fbcde0e524cb9f8db49c2f14cdea0137c41f  node-v$NODE_VERSION-linux-armv6l.tar.gz" | sha256sum -c - \
 	&& tar -xzf "node-v$NODE_VERSION-linux-armv6l.tar.gz" -C /usr/local --strip-components=1 \
 	&& rm "node-v$NODE_VERSION-linux-armv6l.tar.gz" \
 	&& apt-get purge -y --auto-remove $buildDeps \
