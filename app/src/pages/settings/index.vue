@@ -8,16 +8,16 @@
             </div>
         </div>
         <div class="row settings">
-            <div class="col-12">
-                <p>Select your audio profile.</p>
-                <form v-on:change.prevent="set_profile">
-                    <div class="form-group">
-                        <select class="form-control" name="profile" ref="profile" v-model="selected_profile">
-                            <option v-for="option in options" v-bind:value="option" v-bind:key="option">{{ option | capitalize }}</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
+            <!--<div class="col-12">-->
+                <!--<p>Select your audio profile.</p>-->
+                <!--<form v-on:change.prevent="set_profile">-->
+                    <!--<div class="form-group">-->
+                        <!--<select class="form-control" name="profile" ref="profile" v-model="selected_profile">-->
+                            <!--<option v-for="option in options" v-bind:value="option" v-bind:key="option">{{ option | capitalize }}</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+                <!--</form>-->
+            <!--</div>-->
             <div class="col-12">
                 <p>Click the button below if you wish to restart the device.</p>
                 <a href="javascript:void(0)" v-on:click="reboot" class="btn btn-outline-warning" data-action="reboot">Reboot</a>
