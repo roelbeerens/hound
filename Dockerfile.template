@@ -1,15 +1,16 @@
 FROM resin/rpi-raspbian:buster
 
-ENV INITSYSTEM=on
+ENV NODE_VERSION=10.6.0 \
+    INITSYSTEM=on
 
 RUN buildDeps='curl' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& curl -SLO "http://nodejs.org/dist/v10.6.0/node-v10.6.0-linux-armv7l.tar.gz" \
-	&& echo "ba6fb37ffe03fb197de2b17a42a0fbcde0e524cb9f8db49c2f14cdea0137c41f  node-v10.6.0-linux-armv7l.tar.gz" | sha256sum -c - \
-	&& tar -xzf "node-v10.6.0-linux-armv7l.tar.gz" -C /usr/local --strip-components=1 \
-	&& rm "node-v10.6.0-linux-armv7l.tar.gz" \
+	&& curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-armv7l.tar.gz" \
+	&& echo "f7b107a0569b08ead918172e3db5e1791d5f8b53e423e39cbb2b858f4c766cc0  node-v$NODE_VERSION-linux-armv7l.tar.gz" | sha256sum -c - \
+	&& tar -xzf "node-v$NODE_VERSION-linux-armv7l.tar.gz" -C /usr/local --strip-components=1 \
+	&& rm "node-v$NODE_VERSION-linux-armv7l.tar.gz" \
 	&& apt-get purge -y --auto-remove $buildDeps \
 	&& npm config set unsafe-perm true -g --unsafe-perm \
 	&& rm -rf /tmp/* \
