@@ -1,9 +1,9 @@
-state.sndrpijustboomd {
+state.sndrpihifiberry {
         control.1 {
                 iface MIXER
                 name 'Digital Playback Volume'
-                value.0 207
-                value.1 207
+                value.0 203
+                value.1 203
                 comment {
                         access 'read write'
                         type INTEGER
@@ -11,8 +11,8 @@ state.sndrpijustboomd {
                         range '0 - 207'
                         dbmin -9999999
                         dbmax 0
-                        dbvalue.0 0
-                        dbvalue.1 0
+                        dbvalue.0 -200
+                        dbvalue.1 -200
                 }
         }
         control.2 {
@@ -34,8 +34,8 @@ state.sndrpijustboomd {
         control.3 {
                 iface MIXER
                 name 'Analogue Playback Boost Volume'
-                value.0 1
-                value.1 1
+                value.0 0
+                value.1 0
                 comment {
                         access 'read write'
                         type INTEGER
@@ -43,8 +43,8 @@ state.sndrpijustboomd {
                         range '0 - 1'
                         dbmin 0
                         dbmax 80
-                        dbvalue.0 80
-                        dbvalue.1 80
+                        dbvalue.0 0
+                        dbvalue.1 0
                 }
         }
         control.4 {
