@@ -32,7 +32,6 @@ RUN buildDeps='curl' \
     git \
     xmltoman \
     autoconf \
-    ps \
     libtool \
     libdaemon-dev \
     libpopt-dev \
