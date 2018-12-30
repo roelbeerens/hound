@@ -1,4 +1,4 @@
-FROM resin/rpi-raspbian:buster
+FROM balena/rpi-raspbian:buster
 
 ENV NODE_VERSION=10.6.0 \
     NODE_CHECKSUM=e058834476d06783360d4bce049870a1d36a8a4271a5e7430bac76fa8c214b06 \
@@ -49,8 +49,8 @@ RUN buildDeps='curl' \
 WORKDIR /usr/src/app
 
 # Install Packages
-RUN curl https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest -s \
-    | grep -hoP 'browser_download_url": "\K.*%%RESIN_ARCH%%\.tar\.gz' \
+RUN curl https://api.github.com/repos/balena-io/wifi-connect/releases/latest -s \
+    | grep -hoP 'browser_download_url": "\K.*%%BALENA_ARCH%%\.tar\.gz' \
     | xargs -n1 curl -Ls \
     | tar -xvz -C /usr/src/app/ \
     && rm -rf /usr/src/app/ui \
@@ -76,7 +76,7 @@ RUN systemctl disable shairport-sync raspotify
 # Copies the package.json first for better cache on later pushes
 COPY ./app/package.json ./app/package-lock.json ./
 
-# This install npm dependencies on the resin.io build server,
+# This install npm dependencies on the balena.io build server,
 # making sure to clean up the artifacts it creates in order to reduce the image size.
 RUN JOBS=MAX npm install --only=production && npm cache clean --force && rm -rf /tmp/*
 
