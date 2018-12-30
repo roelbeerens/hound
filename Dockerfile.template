@@ -32,8 +32,6 @@ RUN buildDeps='curl' \
     git \
     xmltoman \
     autoconf \
-    make \
-    automake \
     avahi-utils \
     libnss-mdns \
     libtool \
@@ -45,6 +43,7 @@ RUN buildDeps='curl' \
     avahi-daemon \
     libavahi-client-dev \
     libssl-dev \
+    systemd \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
