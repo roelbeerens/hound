@@ -32,8 +32,7 @@ RUN buildDeps='curl' \
     git \
     xmltoman \
     autoconf \
-    avahi-utils \
-    libnss-mdns \
+    ps \
     libtool \
     libdaemon-dev \
     libpopt-dev \
