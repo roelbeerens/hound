@@ -34,6 +34,8 @@ RUN buildDeps='curl' \
     autoconf \
     make \
     automake \
+    avahi-utils \
+    libnss-mdns \
     libtool \
     libdaemon-dev \
     libpopt-dev \
@@ -57,7 +59,7 @@ RUN curl https://api.github.com/repos/balena-io/wifi-connect/releases/latest -s 
     && git clone https://github.com/mikebrady/shairport-sync.git shairport-sync --depth 1 \
     && cd shairport-sync && autoreconf -i -f \
     && ./configure --with-alsa --with-avahi --with-ssl=openssl --with-metadata --with-systemd --sysconfdir=/etc \
-    && make install && cd ../ && rm -rf shairport-sync \
+    && make && make install && cd ../ && rm -rf shairport-sync \
     && curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
 
 # Configure Shairport Sync
