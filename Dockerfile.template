@@ -1,4 +1,4 @@
-FROM balena/rpi-raspbian:buster
+FROM balenalib/rpi-raspbian:buster
 
 ENV NODE_VERSION=10.6.0 \
     NODE_CHECKSUM=e058834476d06783360d4bce049870a1d36a8a4271a5e7430bac76fa8c214b06 \
