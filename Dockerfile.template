@@ -1,4 +1,4 @@
-FROM balenalib/rpi-raspbian:buster
+FROM resin/rpi-raspbian:buster
 
 ENV NODE_VERSION=10.6.0 \
     NODE_CHECKSUM=e058834476d06783360d4bce049870a1d36a8a4271a5e7430bac76fa8c214b06 \
@@ -43,7 +43,6 @@ RUN buildDeps='curl' \
     avahi-daemon \
     libavahi-client-dev \
     libssl-dev \
-    systemd \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -63,6 +62,9 @@ COPY ./config/asound.state /var/lib/alsa/asound.state
 
 # Configure Raspotify
 COPY ./config/raspotify.conf /etc/default/raspotify
+
+# Enable services - we will manually start it later
+RUN systemctl disable raspotify
 
 # Copies the package.json first for better cache on later pushes
 COPY ./app/package.json ./app/package-lock.json ./
